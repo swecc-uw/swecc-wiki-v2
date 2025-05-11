@@ -1,4 +1,7 @@
-# Patterns for Scalability and Reliability in Systems
+---
+title: System Design Primer
+author: Elijah Melton
+---
 
 This document covers the basic techniques and architectures for solving common scalability and reliability problems in systems.
 

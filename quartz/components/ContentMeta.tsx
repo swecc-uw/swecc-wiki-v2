@@ -16,7 +16,21 @@ interface ContentMetaOptions {
 
 const defaultOptions: ContentMetaOptions = {
   showReadingTime: true,
-  showComma: true,
+  showComma: false,
+}
+
+const renderSegments = (segments: (string | JSX.Element)[]) => {
+  return segments.map((segment, index) => {
+    if (index > 0) {
+      return (
+        <span key={index}>
+          <span class="separator">{" "}•{" "}</span>
+          {segment}
+        </span>
+      )
+    }
+    return segment
+  });
 }
 
 export default ((opts?: Partial<ContentMetaOptions>) => {
@@ -28,6 +42,10 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
 
     if (text) {
       const segments: (string | JSX.Element)[] = []
+
+      if (fileData.frontmatter?.author) {
+        segments.push(<span>{fileData.frontmatter?.author}</span>)
+      }
 
       if (fileData.dates) {
         segments.push(<Date date={getDate(cfg, fileData)!} locale={cfg.locale} />)
@@ -44,7 +62,7 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
 
       return (
         <p show-comma={options.showComma} class={classNames(displayClass, "content-meta")}>
-          {segments}
+          {renderSegments(segments)}
         </p>
       )
     } else {

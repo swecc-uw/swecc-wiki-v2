@@ -1,4 +1,7 @@
-# SWECC Wiki
+---
+title: SWECC Wiki
+author: Elijah Melton
+---
 
 Welcome to the wiki for the Software Engineering Career Club at the University of Washington!
 Here, we share resources, tips, and experiences to help each other succeed in our software engineering careers.

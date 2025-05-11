@@ -1,4 +1,7 @@
-# Palantir Interview Guide (Intern & New Grad)
+---
+title: Palantir Interview Guide (Intern & New Grad)
+author: Shawn Collinge
+---
 
 > The interview process is the same for both intern and new grad roles.
 

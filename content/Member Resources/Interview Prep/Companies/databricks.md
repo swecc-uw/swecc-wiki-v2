@@ -1,4 +1,7 @@
-# Databricks Internship Interview Guide
+---
+title: Databricks Interview Guide
+author: Shawn Collinge
+---
 
 > Note: This is for the *intern* interview process.  
 > Full-time roles have an *additional* system design interview round but the rest should be the same.

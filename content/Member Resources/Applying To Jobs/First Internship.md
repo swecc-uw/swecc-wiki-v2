@@ -1,4 +1,7 @@
-# So You Want a Software Engineering Internship
+---
+title: So You Want a Software Engineering Internship
+author: Justin Huang
+---
 
 ## Is it possible?
 

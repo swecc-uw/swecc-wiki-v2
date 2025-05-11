@@ -1,1 +1,3 @@
-# Software Engineering Career Club Member Resources
+---
+title: Software Engineering Career Club Member Resources
+---

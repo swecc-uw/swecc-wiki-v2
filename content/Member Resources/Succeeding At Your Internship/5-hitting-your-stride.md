@@ -1,4 +1,7 @@
-# Hitting Your Stride
+---
+title: Hitting Your Stride
+author: Elijah Melton
+---
 
 After a few weeks at your internship, you'll hopefully start to settle into a rhythm. This is a great time to reflect on your progress, identify areas for improvement, and also make sure you're making the most of your experience now that you're more comfortable with your work.
 

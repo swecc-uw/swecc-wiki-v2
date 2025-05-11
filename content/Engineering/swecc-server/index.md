@@ -1,5 +1,6 @@
 ---
 title: SWECC Server
+author: Advay Patil
 ---
 
 This section contains all information related to [swecc-server](https://github.com/swecc-uw/swecc-server/), including things like routes, expected request formats, response bodies, status codes, Django apps, etc!

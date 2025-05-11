@@ -1,4 +1,7 @@
-# Getting Feedback
+---
+title: Getting Feedback
+author: Elijah Melton
+---
 Feedback is your strongest tool for growth during your internship, and also the best signal you can use to gauge your chances of a return offer. Make sure you take advantage of it early and often!
 
 ---

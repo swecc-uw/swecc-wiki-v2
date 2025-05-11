@@ -1,4 +1,7 @@
-# Amazon Internship Interview Guide
+---
+title: Amazon Interview Guide
+author: Shawn Collinge
+---
 
 Lots of people ask about Amazon interviews, so I wanted to write up everything I know based on my experience and what I’ve seen from others.
 

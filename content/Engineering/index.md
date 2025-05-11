@@ -1,5 +1,6 @@
 ---
 title: Engineering @ SWECC
+author: Elijah Melton
 ---
 
 The Software Engineering Career Club has a lot of [software](https://github.com/swecc-uw/), and a great team behind it. The majority of our software is open source, and we encourage you to contribute! If you are looking for a place to start, check out [SWECC Labs](https://labs.swecc.org).

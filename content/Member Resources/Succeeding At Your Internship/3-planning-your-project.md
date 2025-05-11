@@ -1,3 +1,7 @@
+---
+title: Planning Your Project 
+author: Elijah Melton
+---
 # Planning Your Internship Project
 
 After you've gotten settled in during your first week, you'll likely be assigned a project to work on for the duration of your internship. This is where the real fun begins!

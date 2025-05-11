@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
+    pageTitle: "SWECC Wiki",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -31,7 +31,7 @@ const config: QuartzConfig = {
         lightMode: {
           light: "#faf8f8",
           lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
+          gray: "#777777",
           darkgray: "#4e4e4e",
           dark: "#2b2b2b",
           secondary: "#284b63",
@@ -42,7 +42,7 @@ const config: QuartzConfig = {
         darkMode: {
           light: "#161618",
           lightgray: "#393639",
-          gray: "#646464",
+          gray: "#a0a0a0",
           darkgray: "#d4d4d4",
           dark: "#ebebec",
           secondary: "#7b97aa",

@@ -1,4 +1,7 @@
-# Data Structures and Algorithms Interview Guide
+---
+title: Data Structures and Algorithms Interview
+author: Elijah Melton
+---
 
 This document provides an overview of technical coding interviews focused on data structures and algorithms (DSA), commonly referred to as "LeetCode-style" interviews. We'll cover the interview format, key concepts to understand, common patterns, preparation strategies, and tips for success.
 

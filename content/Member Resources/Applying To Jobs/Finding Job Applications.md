@@ -1,4 +1,7 @@
-# Finding SWE Job Applications
+---
+title: Finding Job Applications
+author: Elijah Melton
+---
 
 ## Searching with Google
 

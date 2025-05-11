@@ -1,4 +1,7 @@
-# Preparing for Your Internship
+---
+title: Preparing For Your Internship
+author: Elijah Melton
+---
 
 First, I want to emphasize that this isn't necessarily required for most internships. It's often expected that you'll be learning new tech during onboarding, and plenty of people are absolutely fine without doing any prep work.
 

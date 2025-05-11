@@ -1,5 +1,6 @@
-# Stripe Interview Guide (Intern & New Grad)
-
+---
+title: Stripe Interview Guide (Intern & New Grad)
+author: Shawn Collinge
 ---
 
 ## Interview Process Overview

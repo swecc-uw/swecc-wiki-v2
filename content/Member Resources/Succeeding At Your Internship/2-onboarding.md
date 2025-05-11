@@ -1,3 +1,7 @@
+---
+title: Onboarding 
+author: Elijah Melton
+---
 # Onboarding Like a Pro
 
 Starting your internship can be both exciting and overwhelming. Your first week will involve a lot of information intake, meeting new people, and trying to figure out how things work. There's a good chance it will feel like drinking from a firehose.

@@ -1,4 +1,7 @@
-# Wrapping up your internship
+---
+title: Wrapping Up
+author: Elijah Melton
+---
 
 As your internship comes to a close, it's important to end on a strong note. A smooth transition not only leaves a good impression but also ensures your work continues to provide value after you're gone. You should start planning this a few weeks before your end date, but it's never too early to start thinking about it.
 

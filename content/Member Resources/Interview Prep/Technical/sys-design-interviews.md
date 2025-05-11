@@ -1,5 +1,7 @@
-# System Design Interviews
-
+---
+title: System Design Interviews
+author: Elijah Melton
+---
 ## Introduction
 
 System design interviews are a critical component of the technical interview process, especially as you progress in your career. This guide introduces the concept, structure, and strategies for approaching system design interviews successfully.

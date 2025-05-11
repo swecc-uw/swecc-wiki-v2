@@ -1,4 +1,8 @@
-# Cohort
+---
+title: Cohort
+author: Advay Patil
+---
+
 
 This Django app is used primarily to manage our cohort program, handling things like cohort assignment, statistics aggregation, and some administrative features (to name a few).
 
@@ -8,7 +12,7 @@ This Django app is used primarily to manage our cohort program, handling things 
 
 This holds information about a specific cohort.
 | **Field** | **Type** | **Description** |
-| ----------- | ----------------- | ----------------------------------------------------- |
+| -------------- | ----------------- | ----------------------------------------------------- |
 | `members` | `ManyToMany` | Links users to cohorts |
 | `name` | `CharField` | The name of the cohort. Must be unique | `max_length=255`, `unique=True` |
 | `level` | `CharField` | Classification of the cohort. Either Beginner, Intermediate, or Advanced |
@@ -32,4 +36,4 @@ This holds information about a specific cohort.
 
 ### POST `/cohort`
 
-- **Description**: Creates
+- **Description**: Creates...
