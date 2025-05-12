@@ -58,7 +58,7 @@ This forces you to plan out your solution in detail, consider edge cases, and th
 
 Each course also gives you experience coding in different languages:
 
-- **CSE 451 (Operating Systems)** — C++  
+- **CSE 451 (Operating Systems)** — C
 - **CSE 452 (Distributed Systems)** — Java  
 - **CSE 461 (Networking)** — Java / Python  
 
