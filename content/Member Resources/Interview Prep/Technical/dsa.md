@@ -129,7 +129,7 @@ Being able to analyze and discuss the efficiency of your solutions is critical. 
 
 Start practicing now! The earlier you start, the more comfortable you'll be with the material, and being well-rehearsed will help you feel more confident in your interviews. Unfortunately, there's no way around it: you need to practice programming problems. [LeetCode](https://leetcode.com/) is pretty much the standard for this (though there are alternatives).
 
-Beyond just solving problems, you also need to get comfortable **communicating** your thought process. It often catches people off-guard just how difficult it is to maintain coherence while coding when they do their first technical interview. This is a skills that needs to be practiced, so make sure to sign up for (mock interviews)[https://www.interview.swecc.org]!
+Beyond just solving problems, you also need to get comfortable **communicating** your thought process. It often catches people off-guard just how difficult it is to maintain coherence while coding when they do their first technical interview. This is a skills that needs to be practiced, so make sure to sign up for [mock interviews](https://www.interview.swecc.org)!
 
 ## Tips for Success
 
