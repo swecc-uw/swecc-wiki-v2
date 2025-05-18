@@ -34,7 +34,9 @@ On that note, I actually got my first internship offer with a Microsoft Word res
 
 It's important to note that you should attempt to treat your resume as a **living document**. This means taking a look at what roles need – if they want special skills, make sure to mention them. If you have more relevant experiences for a particular role, include those for your resume. Get people to review your resume – we have a [channel dedicated specifically to this](https://discord.com/channels/960050427657863218/1171196028955918506) in our Discord server. It's important to know how other real people see your resume and double-check it.
 
-Lastly, if you want a more in-depth and thorough guide on _what_ to put on your resume, check out [this reddit post](https://www.reddit.com/r/EngineeringResumes/wiki/index/). It has a lot of great information on how to format your resume, what to put on it, and how to make it stand out. We'll also have a tool coming soon to help ;)
+For those looking an automated way of getting your resume reviewed, University of Washington's Career Center has tooling to help review your resume. [Jobscan](https://careers.uw.edu/resources/jobscan/) is one way you can get instant feedback on your resume. We'll also have a tool coming soon to help give quick feedback that's more tailored to SWE and SWE-adjacent roles.
+
+Lastly, if you want a more in-depth and thorough guide on _what_ to put on your resume, check out [this reddit post](https://www.reddit.com/r/EngineeringResumes/wiki/index/). It has a lot of great information on how to format your resume, what to put on it, and how to make it stand out.
 
 ### Applications
 
