@@ -18,7 +18,9 @@ Beyond the `#internship-applications` and `#new-grad-applications` channels in o
 
 ### Internships
 
-- [Simplify Repo (2025)](https://github.com/SimplifyJobs/Summer2025-Internships)
+- [Simplify Repo (2026)](https://github.com/SimplifyJobs/Summer2025-Internships)[^1]
+- [Aiden Ouckama Repo (2026)](https://github.com/vanshb03/Summer2026-Internships)
+
 
 ### New Grad
 
@@ -31,3 +33,6 @@ Beyond the `#internship-applications` and `#new-grad-applications` channels in o
 - [RippleMatch](https://ripplematch.com/jobs/)
 - [Untapped](https://untapped.io/)
 - [LinkedIn](https://www.linkedin.com/)
+
+[^1]: If you're reading this summer before the new recruiting season, this will still be the correct link for Simplify.  
+     It may take time to update to show 2026 roles (~July 2025), but they'll populate here.
