@@ -1,6 +1,6 @@
 ---
 title: Amazon Interview Guide
-author: Shawn Collinge
+author: Shawn Collinge, Simon Kurgan
 ---
 
 Lots of people ask about Amazon interviews, so I wanted to write up everything I know based on my experience and what I’ve seen from others.
