@@ -10,3 +10,6 @@ private/
 .replit
 replit.nix
 .obsidian.vimrc
+
+# macOS metadata files
+._*
