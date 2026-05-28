@@ -50,7 +50,7 @@ The export includes run data suitable for replay or analysis (episodes, traces, 
 
 ## Typical workflow
 
-1. [[mesocosm/running-benchmarks|Run a platform benchmark]] and wait for completion
+1. [[Sweccathon/mesocosm/running-benchmarks|Run a platform benchmark]] and wait for completion
 2. `mesocosm run get RUN_ID` — confirm status and scores
 3. `mesocosm run export RUN_ID -o showcase/replay.json`
 4. Review JSON locally; commit to GitHub if sharing with reviewers
@@ -74,10 +74,10 @@ When creating runs, you can set visibility for gallery features:
 mesocosm run create ... --visibility gallery_public
 ```
 
-See [[mesocosm/running-benchmarks|Running benchmarks]] for `run create` flags.
+See [[Sweccathon/mesocosm/running-benchmarks|Running benchmarks]] for `run create` flags.
 
 ## Related
 
-- [[mesocosm/running-benchmarks|Running benchmarks]]
-- [[mesocosm/command-reference#mesocosm-run-export|Command reference — run export]]
-- [[mesocosm/local-development|Local development]] — local runs do not produce showcase exports; export is for platform `RUN_ID`s
+- [[Sweccathon/mesocosm/running-benchmarks|Running benchmarks]]
+- [[Sweccathon/mesocosm/command-reference#mesocosm-run-export|Command reference — run export]]
+- [[Sweccathon/mesocosm/local-development|Local development]] — local runs do not produce showcase exports; export is for platform `RUN_ID`s

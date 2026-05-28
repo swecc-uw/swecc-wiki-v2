@@ -10,9 +10,19 @@ Install the Mesocosm CLI, run your first local benchmark, then connect to the SW
 
 ## Install
 
+Use **`pip`** — the Mesocosm CLI is distributed on PyPI as `swecc-mesocosm`:
+
 ```bash
 pip install swecc-mesocosm
 mesocosm --version
+```
+
+**Why pip?** SWECC docs and support assume a plain `pip install`. Other package managers (`uv`, Poetry, conda, Homebrew, etc.) may pin a different Python or an older wheel. If something breaks, retry in a fresh virtualenv with pip first:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install swecc-mesocosm
 ```
 
 The package provides:
@@ -47,7 +57,7 @@ This scaffolds:
 | `LOCAL_DEV.md` | Short local-dev cheat sheet in your repo |
 | `showcase/` | Placeholder for replay exports |
 
-See [[mesocosm/local-development|Local development]] for the two-terminal workflow.
+See [[Sweccathon/mesocosm/local-development|Local development]] for the two-terminal workflow.
 
 ## First commands
 
@@ -55,6 +65,7 @@ See [[mesocosm/local-development|Local development]] for the two-terminal workfl
 | --- | --- |
 | Check CLI | `mesocosm --help` |
 | Check platform reachability | `mesocosm doctor` |
+| Validate manifest before submit | `mesocosm validate benchanything.json` |
 | Log in (member) | `mesocosm auth login` |
 | Try without an account | `mesocosm auth guest` |
 | Who am I? | `mesocosm auth whoami` |
@@ -99,7 +110,7 @@ With `MESOCOSM_LOCAL=1`, defaults typically become:
 
 `mesocosm run local` uses Ollama on your machine and does not require a running bench-api unless you are also testing platform commands locally.
 
-Full details: [[mesocosm/troubleshooting#urls-and-environment-variables|Troubleshooting — URLs and environment variables]].
+Full details: [[Sweccathon/mesocosm/troubleshooting#urls-and-environment-variables|Troubleshooting — URLs and environment variables]].
 
 ## Configure {#configure}
 
@@ -126,7 +137,7 @@ Typical keys: `mode` (`member` or `guest`), `token`, `server_url`, `bench_url`, 
 | `SWECC_BENCH_TOKEN` | Member JWT for scripts/CI (skip interactive login) |
 | `SWECC_BENCH_GUEST_TOKEN` | Guest token for API calls |
 
-See [[mesocosm/command-reference#global-configuration|Command reference — Global configuration]] for the full list.
+See [[Sweccathon/mesocosm/command-reference#global-configuration|Command reference — Global configuration]] for the full list.
 
 ### Non-interactive auth
 
@@ -138,27 +149,28 @@ export SWECC_BENCH_TOKEN='your-member-jwt'
 mesocosm auth guest
 ```
 
-See [[mesocosm/authentication|Authentication]].
+See [[Sweccathon/mesocosm/authentication|Authentication]].
 
 ## Typical workflows
 
 ### Environment author
 
 1. `mesocosm init` → edit `env.py` / `benchanything.json`
-2. [[mesocosm/local-development|Local development]] with Ollama
-3. [[mesocosm/authentication|Authentication]] → [[mesocosm/submitting-environments|Submitting environments]]
-4. [[mesocosm/running-benchmarks|Running benchmarks]] on the platform
-5. Optional: [[mesocosm/showcase|Showcase]] export
+2. `mesocosm validate benchanything.json`
+3. [[Sweccathon/mesocosm/local-development|Local development]] with Ollama
+4. [[Sweccathon/mesocosm/authentication|Authentication]] → [[Sweccathon/mesocosm/submitting-environments|Submitting environments]]
+5. [[Sweccathon/mesocosm/running-benchmarks|Running benchmarks]] on the platform
+6. Optional: [[Sweccathon/mesocosm/showcase|Showcase]] export
 
 ### Platform user (no env repo)
 
 1. `mesocosm auth login` or `auth guest`
-2. [[mesocosm/teams|Teams]] (optional)
+2. [[Sweccathon/mesocosm/teams|Teams]] (optional)
 3. `mesocosm run create` against an existing domain
 4. `mesocosm run get RUN_ID` / `mesocosm run export RUN_ID`
 
 ## Next steps
 
-- [[mesocosm/local-development|Local development]] — Ollama + adapter loop
-- [[mesocosm/authentication|Authentication]] — Member vs guest
-- [[mesocosm/command-reference|Command reference]] — All commands and flags
+- [[Sweccathon/mesocosm/local-development|Local development]] — Ollama + adapter loop
+- [[Sweccathon/mesocosm/authentication|Authentication]] — Member vs guest
+- [[Sweccathon/mesocosm/command-reference|Command reference]] — All commands and flags

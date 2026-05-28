@@ -29,7 +29,7 @@ mesocosm env submit \
 
 ### Team scope
 
-If you have an [[mesocosm/teams|active team]], submissions default to that team unless you pass `--team` or `--solo`.
+If you have an [[Sweccathon/mesocosm/teams|active team]], submissions default to that team unless you pass `--team` or `--solo`.
 
 ## What happens on submit
 
@@ -58,7 +58,7 @@ Your repo should be suitable for automated clone and run:
 | **`benchanything.json`** at repo root (or path the platform expects) | Defines binding vow, domain metadata, scoring |
 | **`env.py`** + **`adapter.py`** (or equivalent layout from `mesocosm init`) | Runtime environment and HTTP adapter |
 | **`requirements.txt`** (if needed) | Optional extra Python packages installed in the cloud runtime |
-| Working local loop | Validate with [[mesocosm/local-development]] before submit |
+| Working local loop | Validate with [[Sweccathon/mesocosm/local-development]] before submit |
 
 ### Recommended layout (from `mesocosm init`)
 
@@ -84,7 +84,7 @@ mesocosm env submit \
 ## After submit
 
 1. `mesocosm env list` — wait until status indicates ready
-2. [[mesocosm/running-benchmarks|Running benchmarks]] — `mesocosm run create --domain DOMAIN_ID …`
+2. [[Sweccathon/mesocosm/running-benchmarks|Running benchmarks]] — `mesocosm run create --domain DOMAIN_ID …`
 3. Optionally pin an environment: `run create --env-id ENV_ID`
 
 ## Legacy `domain.py` workflow
@@ -107,11 +107,11 @@ mesocosm validate domain.json
 cat domain.json | mesocosm validate -
 ```
 
-See [[mesocosm/command-reference#mesocosm-validate|Command reference — validate]].
+See [[Sweccathon/mesocosm/command-reference#mesocosm-validate|Command reference — validate]].
 
 ## Related
 
-- [[mesocosm/local-development|Local development]]
-- [[mesocosm/running-benchmarks|Running benchmarks]]
-- [[mesocosm/teams|Teams]]
-- [[mesocosm/command-reference#mesocosm-env-submit|Command reference — env submit]]
+- [[Sweccathon/mesocosm/local-development|Local development]]
+- [[Sweccathon/mesocosm/running-benchmarks|Running benchmarks]]
+- [[Sweccathon/mesocosm/teams|Teams]]
+- [[Sweccathon/mesocosm/command-reference#mesocosm-env-submit|Command reference — env submit]]

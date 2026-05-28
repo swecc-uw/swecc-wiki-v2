@@ -6,9 +6,9 @@ aliases:
 
 # Command reference
 
-Complete parameter reference for the **`mesocosm`** CLI (`pip install swecc-mesocosm`).
+Complete parameter reference for the **`mesocosm`** CLI. Install with **`pip install swecc-mesocosm`** (see [[Sweccathon/mesocosm/getting-started#install|Getting started — Install]]).
 
-**See also:** [[START_HERE|Mesocosm CLI]], [[mesocosm/getting-started|Getting started]], [[mesocosm/local-development|Local development]].
+**See also:** [[Sweccathon/START_HERE|Mesocosm CLI]], [[Sweccathon/mesocosm/getting-started|Getting started]], [[Sweccathon/mesocosm/local-development|Local development]].
 
 Run `mesocosm --help` or `mesocosm run --help` for the built-in command tree.
 
@@ -41,6 +41,7 @@ Run `mesocosm --help` or `mesocosm run --help` for the built-in command tree.
 | `run local` | see below | Bench locally with Ollama and benchanything.json |
 | `env submit` | `--name`; `--github-url`; … | Submit GitHub repo as developer environment |
 | `env list` | `--team`; `--solo` | List your developer environments |
+| `env delete` | `ENV_ID` | Delete a developer environment (member auth) |
 | `run create` | `--domain`; `--vow-version`; … | Start platform bench run via API |
 | `run export` | `RUN_ID`; `-o` / `--output` | Download run JSON for showcase or replay |
 | `register` | `domain.py`; `--auto-id`; `--publish` | Legacy register domain.py; prefer env submit |
@@ -69,7 +70,7 @@ Written by `auth login`, `auth guest`, `team use`, `team clear`, and `team creat
 
 | Variable | Used by | Description |
 | --- | --- | --- |
-| `MESOCOSM_LOCAL` | URL defaults, `doctor --local` | When set to `1`, `true`, `yes`, or `on`, use local URLs (`127.0.0.1:8000` server, `:8010` bench-api, `:8765` adapter) unless overridden. See [[mesocosm/getting-started#configure]] (Configure). |
+| `MESOCOSM_LOCAL` | URL defaults, `doctor --local` | When set to `1`, `true`, `yes`, or `on`, use local URLs (`127.0.0.1:8000` server, `:8010` bench-api, `:8765` adapter) unless overridden. See [[Sweccathon/mesocosm/getting-started#configure]] (Configure). |
 | `MESOCOSM_BASE_URL` | `--base-url`, URL resolution | bench-api base URL. Production must include `/bench` (e.g. `https://api.swecc.org/bench`). |
 | `SWECC_BENCH_URL` | URL resolution | Alias for bench-api base URL. |
 | `BENCH_API_URL` | URL resolution | Third alias for bench-api base URL. |
@@ -79,6 +80,7 @@ Written by `auth login`, `auth guest`, `team use`, `team clear`, and `team creat
 | `SWECC_BENCH_CREDENTIALS` | Credential store | Path to JSON credentials file. |
 | `MESOCOSM_ENV_URL` | `doctor --local` | Override env adapter URL (default `http://127.0.0.1:8765`). |
 | `MESOCOSM_ADAPTER_URL` | `doctor --local` | Alias for env adapter URL. |
+| `BENCH_AUTH_DISABLED` | bench_common session (dev) | When `1`/`true`/`yes`, skip auth and use empty bearer (local bench-api dev only). |
 
 **Resolution order (member bench-api URL):** CLI `--bench-url` / `--base-url` → environment variables above → saved `bench_url` in credentials → derive from `server_url` → `MESOCOSM_LOCAL` → production default.
 
@@ -96,7 +98,7 @@ Written by `auth login`, `auth guest`, `team use`, `team clear`, and `team creat
 
 Many platform commands attach `team_id` from credentials `active_team_id`, unless you pass `--team TEAM_ID` or `--solo`. Set active team with `mesocosm team use TEAM_ID` or `team create --use`.
 
-See [[mesocosm/teams|Teams]].
+See [[Sweccathon/mesocosm/teams|Teams]].
 
 ---
 
@@ -112,7 +114,7 @@ See [[mesocosm/teams|Teams]].
 | `--bench-url` | No | bench-api URL stored after login. Default derived from server (prod → `https://api.swecc.org/bench`, local server → `:8010`). |
 | *(interactive)* | Yes | Prompts for **username** (default: OS username) and **password**. No `--username` / `--password` flags. |
 
-**After success:** Writes `mode: member`, `token`, `server_url`, `bench_url`. For CI, use `SWECC_BENCH_TOKEN` ([[mesocosm/authentication|Authentication]]).
+**After success:** Writes `mode: member`, `token`, `server_url`, `bench_url`. For CI, use `SWECC_BENCH_TOKEN` ([[Sweccathon/mesocosm/authentication|Authentication]]).
 
 ### `mesocosm auth token`
 
@@ -208,7 +210,7 @@ Same as `team show` for `code show`. `code regenerate` rotates join code (owner)
 
 **Writes:** `benchanything.json`, `adapter.py`, `env.py`, `requirements.txt`, `LOCAL_DEV.md`, `showcase/README.md`, `showcase/replay.example.json`.
 
-See [[mesocosm/local-development|Local development]].
+See [[Sweccathon/mesocosm/local-development|Local development]].
 
 ---
 
@@ -263,7 +265,7 @@ See [[mesocosm/local-development|Local development]].
 | `-o`, `--output` | No | Write JSON to file; default stdout. |
 | `--bench-url` | No | Parent flag. |
 
-**API:** `GET /v1/runs/{run_id}/export`. See [[mesocosm/showcase|Showcase]].
+**API:** `GET /v1/runs/{run_id}/export`. See [[Sweccathon/mesocosm/showcase|Showcase]].
 
 ### `mesocosm run get`
 
@@ -301,7 +303,7 @@ See [[mesocosm/local-development|Local development]].
 | `--solo` | No | Force solo scope (no `team_id`). |
 | `--bench-url` | No | Parent flag. |
 
-See [[mesocosm/submitting-environments|Submitting environments]].
+See [[Sweccathon/mesocosm/submitting-environments|Submitting environments]].
 
 ### `mesocosm env list`
 
@@ -310,6 +312,17 @@ See [[mesocosm/submitting-environments|Submitting environments]].
 | `--team` | No | Explicit team id filter. |
 | `--solo` | No | List solo-scoped environments only. |
 | `--bench-url` | No | Parent flag. |
+
+### `mesocosm env delete`
+
+**Summary:** Delete a developer environment by id (member auth).
+
+| Parameter | Required | Description |
+| --- | --- | --- |
+| `ENV_ID` | Yes | Developer environment id from `env list` or submit output. |
+| `--bench-url` | No | Parent flag. |
+
+**API:** `DELETE /v1/developer/environments/{env_id}`.
 
 ---
 
@@ -341,16 +354,20 @@ See [[mesocosm/submitting-environments|Submitting environments]].
 
 **Exit code:** `0` if checks pass, `1` otherwise. Prints JSON with `issues` and hints (e.g. missing `/bench` on prod).
 
-See [[mesocosm/troubleshooting|Troubleshooting]].
+**Local profile:** With `--local` or `MESOCOSM_LOCAL=1`, `doctor` passes if the env adapter health check succeeds — bench-api can be down, which is fine for the Ollama + `run local` loop.
+
+See [[Sweccathon/mesocosm/troubleshooting|Troubleshooting]].
 
 ### `mesocosm validate` {#mesocosm-validate}
 
-**Summary:** Validate domain registration JSON against policy (offline, no HTTP).
+**Summary:** Validate JSON against bundled policy constraints (offline, no HTTP).
 
 | Parameter | Required | Description |
 | --- | --- | --- |
-| `FILE` | Yes | Path to JSON file, or `-` for stdin. Shape: POST `/v1/domains` body. |
+| `FILE` | Yes | Path to JSON file, or `-` for stdin. Auto-detects **`benchanything.json` manifest** shape or legacy **POST `/v1/domains` register body**. |
 | `--base-url` | No | Declared but unused (no network). |
+
+**Output:** JSON with `ok`, `issues`, `suggested_fixes`, `rules_version`, and optional `schema: benchanything_manifest`.
 
 **Exit code:** `0` if validation `ok`, else `1`.
 
@@ -374,6 +391,22 @@ See [[mesocosm/troubleshooting|Troubleshooting]].
 | `--base-url` | No | bench-api base URL. |
 
 **Exit:** Non-zero if episode status is `failed`, `cancelled`, or `error`.
+
+### `run create` vs `eval run`
+
+Both call `POST /v1/runs`, but they target different workflows:
+
+| | `run create` | `eval run` |
+| --- | --- | --- |
+| Domain flag | `--domain` | `--domain-id` |
+| Episodes | `--episodes` | `--num-episodes` |
+| Parallelism | `--parallel` | `--max-parallel` |
+| Default `max_tokens` | 512 | 4096 |
+| `--vow-version` | required | optional (from domain record) |
+| Draft domains | no guard | `--require-published` / `--allow-draft` |
+| Teams / visibility / env-id | yes | no |
+
+Prefer **`run create`** for hackathon platform benchmarks; use **`eval run`** for developer eval workflows.
 
 ### `mesocosm eval run`
 

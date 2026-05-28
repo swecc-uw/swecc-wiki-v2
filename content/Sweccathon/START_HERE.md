@@ -14,7 +14,15 @@ tags:
 
 # Mesocosm CLI
 
-Central hub for the **mesocosm** command-line tool — SWECC's BenchAnything / Mesocosm platform. Install with `pip install swecc-mesocosm`; no backend source code required.
+Central hub for the **mesocosm** command-line tool — SWECC's BenchAnything / Mesocosm platform.
+
+**Install with pip** (recommended — the package is published on PyPI):
+
+```bash
+pip install swecc-mesocosm
+```
+
+Use **`pip`**, not Homebrew, `uv`, Poetry, or other wrappers, unless you know what you are doing. Those can install a different Python environment or an outdated build and cause confusing `mesocosm: command not found` errors. No backend source code required.
 
 ## Quick start
 
@@ -40,15 +48,15 @@ mesocosm run create --domain YOUR_DOMAIN_ID --vow-version 1.0.0 --model gemini/g
 
 ## Guides
 
-- [[mesocosm/getting-started]] — Install, first commands, production vs local
-- [[mesocosm/local-development]] — Ollama loop, adapter, `run local`
-- [[mesocosm/authentication]] — Login, guest, tokens, logout
-- [[mesocosm/teams]] — Create, join, active team context
-- [[mesocosm/submitting-environments]] — `env submit`, GitHub requirements
-- [[mesocosm/running-benchmarks]] — Platform runs, local runs, eval
-- [[mesocosm/showcase]] — Replay JSON, `run export`
-- [[mesocosm/command-reference]] — Full parameter reference
-- [[mesocosm/troubleshooting]] — `doctor`, URLs, common errors
+- [[Sweccathon/mesocosm/getting-started]] — Install, first commands, production vs local
+- [[Sweccathon/mesocosm/local-development]] — Ollama loop, adapter, `run local`
+- [[Sweccathon/mesocosm/authentication]] — Login, guest, tokens, logout
+- [[Sweccathon/mesocosm/teams]] — Create, join, active team context
+- [[Sweccathon/mesocosm/submitting-environments]] — `env submit`, GitHub requirements
+- [[Sweccathon/mesocosm/running-benchmarks]] — Platform runs, local runs, eval
+- [[Sweccathon/mesocosm/showcase]] — Replay JSON, `run export`
+- [[Sweccathon/mesocosm/command-reference]] — Full parameter reference
+- [[Sweccathon/mesocosm/troubleshooting]] — `doctor`, URLs, common errors
 
 ## Who this is for
 
@@ -62,11 +70,11 @@ mesocosm run create --domain YOUR_DOMAIN_ID --vow-version 1.0.0 --model gemini/g
 | **Production** (default) | `mesocosm auth login`, `env submit`, `run create` → `https://api.swecc.org` |
 | **Local** | `export MESOCOSM_LOCAL=1`, `mesocosm doctor --local`, `mesocosm run local` with Ollama |
 
-Details: [[mesocosm/getting-started#configure|Configure]] · [[mesocosm/troubleshooting|Troubleshooting]]
+Details: [[Sweccathon/mesocosm/getting-started#configure|Configure]] · [[Sweccathon/mesocosm/troubleshooting|Troubleshooting]]
 
 ## Related vault notes
 
-- [[SWECCathon 2026 Information Hub]] — hackathon logistics and links
+- [[Sweccathon/SWECCathon 2026 Information Hub]] — hackathon logistics and links
 
 ## CLI help
 
@@ -76,4 +84,4 @@ mesocosm auth --help
 mesocosm run --help
 ```
 
-Every flag and default: [[mesocosm/command-reference|Command reference]].
+Every flag and default: [[Sweccathon/mesocosm/command-reference|Command reference]].
