@@ -27,15 +27,19 @@ Use **`pip`**, not Homebrew, `uv`, Poetry, or other wrappers, unless you know wh
 ## Quick start
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate   # macOS/Linux — Windows: .venv\Scripts\activate
+
 pip install swecc-mesocosm
 mesocosm --help
 
 mkdir my-env && cd my-env
 mesocosm init
 
+ollama serve                # or open the Ollama app
 ollama pull llama3.2
-python adapter.py          # terminal 1
-mesocosm run local         # terminal 2
+python adapter.py           # terminal 1
+mesocosm run local          # terminal 2
 ```
 
 Platform:
