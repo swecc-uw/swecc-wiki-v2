@@ -104,7 +104,7 @@ mesocosm run create ... --team TEAM_ID
 mesocosm run create ... --solo
 ```
 
-See [[mesocosm/submitting-environments|Submitting environments]] and [[mesocosm/running-benchmarks|Running benchmarks]].
+See [[Sweccathon/mesocosm/submitting-environments|Submitting environments]] and [[Sweccathon/mesocosm/running-benchmarks|Running benchmarks]].
 
 ## Quick reference
 
@@ -124,9 +124,9 @@ See [[mesocosm/submitting-environments|Submitting environments]] and [[mesocosm/
 | `team leave TEAM_ID` | Leave team |
 | `team delete TEAM_ID` | Delete team (owner) |
 
-Full parameters: [[mesocosm/command-reference#teams|Command reference — Teams]].
+Full parameters: [[Sweccathon/mesocosm/command-reference#teams|Command reference — Teams]].
 
 ## Related
 
-- [[mesocosm/authentication|Authentication]]
-- [[mesocosm/command-reference|Command reference]]
+- [[Sweccathon/mesocosm/authentication|Authentication]]
+- [[Sweccathon/mesocosm/command-reference|Command reference]]

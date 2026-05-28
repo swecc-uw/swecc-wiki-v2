@@ -24,7 +24,7 @@ Iterate on `env.py` and `benchanything.json` on your machine **before** submitti
 
 The file created by `mesocosm init` is for **optional libraries your environment imports** (for example NumPy). You do **not** need `pip install -r requirements.txt` just to run `adapter.py` and `mesocosm run local` — the CLI already includes the HTTP stack.
 
-When you [[mesocosm/submitting-environments|submit]] to the platform, Mesocosm installs those dependencies in the cloud runtime.
+When you [[Sweccathon/mesocosm/submitting-environments|submit]] to the platform, Mesocosm installs those dependencies in the cloud runtime.
 
 ## Dev loop
 
@@ -74,7 +74,7 @@ mesocosm run local
 | `--seeds` | — | Space-separated integer seeds |
 | `--quiet` | — | Less progress output |
 
-Full reference: [[mesocosm/command-reference#mesocosm-run-local|Command reference — run local]].
+Full reference: [[Sweccathon/mesocosm/command-reference#mesocosm-run-local|Command reference — run local]].
 
 ## Ship to the platform
 
@@ -97,7 +97,7 @@ mesocosm run create \
 
 Platform runs use **cloud models** on SWECC infrastructure. Ollama is only for your machine.
 
-See [[mesocosm/submitting-environments|Submitting environments]] and [[mesocosm/running-benchmarks|Running benchmarks]].
+See [[Sweccathon/mesocosm/submitting-environments|Submitting environments]] and [[Sweccathon/mesocosm/running-benchmarks|Running benchmarks]].
 
 ## Legacy `domain.py` repos
 
@@ -111,6 +111,6 @@ New projects should prefer `mesocosm init` + `env submit`.
 
 ## Related
 
-- [[mesocosm/getting-started|Getting started]]
-- [[mesocosm/troubleshooting#local-development-issues|Troubleshooting — local checks]]
-- [[mesocosm/command-reference|Command reference]]
+- [[Sweccathon/mesocosm/getting-started|Getting started]]
+- [[Sweccathon/mesocosm/troubleshooting#local-development-issues|Troubleshooting — local checks]]
+- [[Sweccathon/mesocosm/command-reference|Command reference]]

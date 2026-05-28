@@ -65,7 +65,7 @@ mesocosm auth whoami
 
 Calls `GET /v1/me` and prints your principal as JSON.
 
-Useful after login or guest to confirm the token and URL are correct. If connection fails, see [[mesocosm/troubleshooting|Troubleshooting]].
+Useful after login or guest to confirm the token and URL are correct. If connection fails, see [[Sweccathon/mesocosm/troubleshooting|Troubleshooting]].
 
 ## Logout
 
@@ -111,11 +111,11 @@ Most commands accept a parent flag:
 mesocosm auth whoami --bench-url https://api.swecc.org/bench
 ```
 
-Resolution order for bench-api URL is documented in [[mesocosm/command-reference#global-configuration|Command reference — Global configuration]].
+Resolution order for bench-api URL is documented in [[Sweccathon/mesocosm/command-reference#global-configuration|Command reference — Global configuration]].
 
 ## Related
 
-- [[mesocosm/teams|Teams]] — requires member auth
-- [[mesocosm/submitting-environments|Submitting environments]] — requires member auth
-- [[mesocosm/troubleshooting#authentication-issues|Troubleshooting — auth errors]]
-- [[mesocosm/command-reference#authentication|Command reference — auth commands]]
+- [[Sweccathon/mesocosm/teams|Teams]] — requires member auth
+- [[Sweccathon/mesocosm/submitting-environments|Submitting environments]] — requires member auth
+- [[Sweccathon/mesocosm/troubleshooting#authentication-issues|Troubleshooting — auth errors]]
+- [[Sweccathon/mesocosm/command-reference#authentication|Command reference — auth commands]]

@@ -33,6 +33,8 @@ mesocosm doctor --local
 | Env adapter | `http://127.0.0.1:8765` (override: `MESOCOSM_ENV_URL` or `MESOCOSM_ADAPTER_URL`) |
 | bench-api | `http://127.0.0.1:8010` |
 
+**Note:** In local profile, `doctor` can pass when only the env adapter is healthy. That is expected for the Ollama + `run local` loop even if bench-api is not running.
+
 ## URLs and environment variables {#urls-and-environment-variables}
 
 ### Production bench API must include `/bench`
@@ -127,7 +129,13 @@ Credentials path: `~/.config/swecc/bench_credentials.json` (override with `SWECC
 
 ## `validate` failures
 
-`mesocosm validate` is **offline** — it does not hit the network. A failure means the JSON does not match registration policy. Fix the manifest fields and re-run.
+`mesocosm validate` is **offline** — it does not hit the network. Pass a `benchanything.json` manifest or legacy register JSON:
+
+```bash
+mesocosm validate benchanything.json
+```
+
+A failure means the JSON does not match bundled policy constraints. Fix the reported fields and re-run.
 
 ## Connection errors (general)
 
@@ -144,10 +152,10 @@ mesocosm run --help
 mesocosm auth login --help
 ```
 
-Full flag list: [[mesocosm/command-reference|Command reference]].
+Full flag list: [[Sweccathon/mesocosm/command-reference|Command reference]].
 
 ## Related
 
-- [[mesocosm/getting-started#configure|Getting started — Configure]]
-- [[mesocosm/authentication|Authentication]]
-- [[mesocosm/local-development|Local development]]
+- [[Sweccathon/mesocosm/getting-started#configure|Getting started — Configure]]
+- [[Sweccathon/mesocosm/authentication|Authentication]]
+- [[Sweccathon/mesocosm/local-development|Local development]]

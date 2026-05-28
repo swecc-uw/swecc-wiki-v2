@@ -18,7 +18,7 @@ Mesocosm supports **local** benchmarks (Ollama + your adapter) and **platform** 
 | **Auth** | None required | Member or guest session |
 | **Registers domain** | No | Uses existing domain from submit/register |
 
-Local workflow: [[mesocosm/local-development|Local development]].
+Local workflow: [[Sweccathon/mesocosm/local-development|Local development]].
 
 ## Platform run: `run create`
 
@@ -57,7 +57,7 @@ mesocosm run create \
 
 ### Auth
 
-Uses your saved session (member or guest). For teams, set [[mesocosm/teams|active team]] or pass `--team` / `--solo`.
+Uses your saved session (member or guest). For teams, set [[Sweccathon/mesocosm/teams|active team]] or pass `--team` / `--solo`.
 
 ## Inspect a run
 
@@ -75,7 +75,7 @@ mesocosm run episodes RUN_ID --traces
 mesocosm run export RUN_ID -o showcase/my-replay.json
 ```
 
-See [[mesocosm/showcase|Showcase]].
+See [[Sweccathon/mesocosm/showcase|Showcase]].
 
 ## Eval commands (API-driven)
 
@@ -134,7 +134,7 @@ mesocosm run export RUN_ID -o showcase/replay.json
 
 ## Related
 
-- [[mesocosm/local-development|Local development]]
-- [[mesocosm/submitting-environments|Submitting environments]]
-- [[mesocosm/showcase|Showcase]]
-- [[mesocosm/command-reference#running-benchmarks|Command reference — Run and eval]]
+- [[Sweccathon/mesocosm/local-development|Local development]]
+- [[Sweccathon/mesocosm/submitting-environments|Submitting environments]]
+- [[Sweccathon/mesocosm/showcase|Showcase]]
+- [[Sweccathon/mesocosm/command-reference#running-benchmarks|Command reference — Run and eval]]
