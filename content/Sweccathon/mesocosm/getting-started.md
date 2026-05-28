@@ -10,9 +10,19 @@ Install the Mesocosm CLI, run your first local benchmark, then connect to the SW
 
 ## Install
 
+Use **`pip`** — the Mesocosm CLI is distributed on PyPI as `swecc-mesocosm`:
+
 ```bash
 pip install swecc-mesocosm
 mesocosm --version
+```
+
+**Why pip?** SWECC docs and support assume a plain `pip install`. Other package managers (`uv`, Poetry, conda, Homebrew, etc.) may pin a different Python or an older wheel. If something breaks, retry in a fresh virtualenv with pip first:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install swecc-mesocosm
 ```
 
 The package provides:

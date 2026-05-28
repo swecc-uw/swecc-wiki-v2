@@ -6,7 +6,7 @@ aliases:
 
 # Command reference
 
-Complete parameter reference for the **`mesocosm`** CLI (`pip install swecc-mesocosm`, currently **0.2.14** on swecc-core main).
+Complete parameter reference for the **`mesocosm`** CLI. Install with **`pip install swecc-mesocosm`** (see [[Sweccathon/mesocosm/getting-started#install|Getting started — Install]]).
 
 **See also:** [[Sweccathon/START_HERE|Mesocosm CLI]], [[Sweccathon/mesocosm/getting-started|Getting started]], [[Sweccathon/mesocosm/local-development|Local development]].
 

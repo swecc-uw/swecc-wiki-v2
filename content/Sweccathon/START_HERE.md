@@ -14,7 +14,15 @@ tags:
 
 # Mesocosm CLI
 
-Central hub for the **mesocosm** command-line tool — SWECC's BenchAnything / Mesocosm platform. Install with `pip install swecc-mesocosm`; no backend source code required.
+Central hub for the **mesocosm** command-line tool — SWECC's BenchAnything / Mesocosm platform.
+
+**Install with pip** (recommended — the package is published on PyPI):
+
+```bash
+pip install swecc-mesocosm
+```
+
+Use **`pip`**, not Homebrew, `uv`, Poetry, or other wrappers, unless you know what you are doing. Those can install a different Python environment or an outdated build and cause confusing `mesocosm: command not found` errors. No backend source code required.
 
 ## Quick start
 

@@ -10,7 +10,7 @@ Iterate on `env.py` and `benchanything.json` on your machine **before** submitti
 
 ## Prerequisites
 
-1. **CLI:** `pip install swecc-mesocosm`
+1. **CLI:** `pip install swecc-mesocosm` (use pip — see [[Sweccathon/mesocosm/getting-started#install|Getting started — Install]])
 2. **Project:** `mesocosm init` in your env directory (or use an existing repo with the same layout)
 3. **Ollama:** Install from [ollama.com](https://ollama.com), then pull a model:
 
