@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>mesocosm — a field guide for AI environments</title>
+  <link rel="stylesheet" href="../shared/vendor/reveal/reveal.css" />
+  <link rel="stylesheet" href="../shared/deck.css" />
+</head>
+<!--
+  ════════════════════════════════════════════════════════════════
+  HOW TO ADD A SLIDE
+  Copy the nearest <section> and edit the text. Each slide is:
+    <section><div class="stage stage--TYPE"> … </div></section>
+  Layout types: stage--title · stage--split · stage--split-rev · stage--stack
+  The inner .stage owns padding + layout (decoupled from Reveal).
+  Chrome: <span class="brand"> top-left, <span class="pagenum"> bottom-right.
+  Components: .eyebrow .s-display .s-title .copy .rlist .codeblock .terminal
+  .flow .loop .cards-row/.step-card .endpoints .wordle-card .form-mock
+  .filetree .pseudocode .panel
+  ════════════════════════════════════════════════════════════════
+-->
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ░░ 01 · TITLE ░░ -->
+      <section>
+        <div class="stage stage--title">
+          <span class="brand brand--hero">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <h1 class="s-hero" style="margin-top:56px">mesocosm</h1>
+          <p class="s-subtitle" style="margin-top:44px">A simple platform for you to submit and easily bench your environments</p>
+          <div style="margin-top:120px; display:flex; flex-direction:column; gap:12px; align-items:center">
+            <p class="s-meta">May 29th, 2026</p>
+            <p class="s-meta">Felix Wu</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ░░ 02 · DEFINITIONS ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <div>
+              <h2 class="s-title" style="font-style:italic; color:var(--leaf-deep)">Definitions</h2>
+              <p class="s-meta" style="margin-top:6px">With a Wordle example</p>
+            </div>
+            <div class="defs">
+              <div class="row"><span class="term"><b>Environment:</b> the &ldquo;thing&rdquo; the model is being tested inside</span><span class="ex">e.g. the Wordle game</span></div>
+              <div class="row"><span class="term"><b>State:</b> the environment&rsquo;s current situation</span><span class="ex">e.g. secret word, guesses used &amp; remaining, past guesses</span></div>
+              <div class="row"><span class="term"><b>State space:</b> every situation the environment could ever be in</span></div>
+              <div class="row"><span class="term"><b>Action space:</b> what the model is allowed to do</span><span class="ex">e.g. one valid 5-letter word guess</span></div>
+              <div class="row"><span class="term"><b>Observation:</b> the part of the state the model can see</span><span class="ex">e.g. past guesses &amp; color &mdash; never the secret word</span></div>
+              <div class="row"><span class="term"><b>Episode:</b> one single run of the env</span><span class="ex">e.g. one Wordle game</span></div>
+            </div>
+          </div>
+          <div class="col col--figure">
+            <div class="wdiagram">
+              <div class="episode-bracket"></div>
+              <div class="episode-cap"><span class="ct">Episode</span><span class="cd">One full run of the environment.</span></div>
+              <div style="display:flex; flex-direction:column; gap:16px">
+                <div class="wordle-card">
+                  <div class="wtitle">WORDLE</div>
+                  <div class="wgrid">
+                    <div class="wtile green">S</div><div class="wtile yellow">L</div><div class="wtile gray">A</div><div class="wtile green">T</div><div class="wtile green">E</div>
+                  </div>
+                  <div class="wgrid"><div class="wtile"></div><div class="wtile"></div><div class="wtile"></div><div class="wtile"></div><div class="wtile"></div></div>
+                  <div class="winput"><div class="wfield">Enter guess</div><div class="wbtn">ENTER</div></div>
+                </div>
+                <div class="statebox">secret_word = <span class="s">"CRANE"</span>
+guesses_used = <span class="n">1</span>
+guesses_remaining = <span class="n">5</span>
+past_guesses = [<span class="s">"SLATE"</span>]</div>
+              </div>
+              <div class="callouts">
+                <div class="callout-row"><span class="ar">&larr;</span><div><span class="ct">Environment</span><span class="cd">The task/game the model is tested inside.</span></div></div>
+                <div class="callout-row"><span class="ar">&larr;</span><div><span class="ct">Observation</span><span class="cd">What the model is allowed to see.</span></div></div>
+                <div class="callout-row"><span class="ar">&larr;</span><div><span class="ct">Action space</span><span class="cd">One valid 5-letter word guess.</span></div></div>
+                <div class="callout-row" style="margin-top:18px"><span class="ar">&larr;</span><div><span class="ct">State space</span><span class="cd">Everything the environment knows internally.</span></div></div>
+              </div>
+            </div>
+          </div>
+          <span class="pagenum">02 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 03 · THE ENVIRONMENT WORKFLOW ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <div>
+              <h2 class="s-title">The <em>Environment Workflow.</em></h2>
+              <p class="s-meta" style="margin-top:8px">What happens inside the environment after each action</p>
+            </div>
+            <div class="copy copy--dense">
+              <p><span class="mono">reset(seed)</span> creates a fresh hidden state &mdash; secret word, guesses used, past guesses.</p>
+              <p>It returns an observation with visible information only, not the secret answer.</p>
+              <p>It receives one action from the model &mdash; e.g. a valid 5-letter guess.</p>
+              <p><span class="mono">step(action)</span> validates the guess, scores each letter, and updates internal state.</p>
+              <p>It returns a StepResult: next observation, reward, done flag, and info.</p>
+              <p>If the episode is done, <span class="mono">close()</span> cleans up. Otherwise, the loop repeats.</p>
+            </div>
+          </div>
+          <div class="col col--figure">
+            <div class="panel">
+              <div class="flow">
+                <div class="flow-return" style="top:31%; height:40%"></div>
+                <div class="flow-step"><b>1.</b> reset(seed)</div>
+                <div class="flow-step"><b>2.</b> observation</div>
+                <div class="flow-step"><b>3.</b> action</div>
+                <div class="flow-step"><b>4.</b> step(action)</div>
+                <div class="flow-step"><b>5.</b> reward + next observation</div>
+                <div class="flow-step is-active"><b>6.</b> done? if not, repeat</div>
+                <div class="flow-step"><b>7.</b> close()</div>
+              </div>
+            </div>
+          </div>
+          <span class="pagenum">03 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 04 · THE AGENT LOOP ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <div>
+              <h2 class="s-title">The <em>Agent Loop.</em></h2>
+              <p class="s-meta" style="margin-top:8px">How does Mesocosm use the model to play the environment?</p>
+            </div>
+            <div class="copy copy--dense">
+              <p>Mesocosm treats the model like the Wordle player.</p>
+              <p>Bench turns the current observation into a model prompt.</p>
+              <p>The model reasons from feedback: <em>green</em> = fixed position, <em>yellow</em> = move letter, <em>gray</em> = avoid.</p>
+              <p>The model outputs one action: a single valid 5-letter guess.</p>
+              <p>Bench sends it into <span class="mono">env.step(action)</span> and records every observation, action, reward, and result as a trace.</p>
+              <p><strong>ReACT: Observe &middot; Think &middot; Act &middot; Repeat.</strong></p>
+            </div>
+          </div>
+          <div class="col col--figure">
+            <div class="loop">
+              <div class="loop-return" style="top:9%; bottom:9%"></div>
+              <div class="loop-card">
+                <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+                <div><h4>1. Observe</h4><p>The model receives the current environment state (observation).</p></div>
+              </div>
+              <div class="loop-card">
+                <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z"/><path d="M9 21h6M10 18h4"/></svg></span>
+                <div><h4>2. Think</h4><p>The model reasons about what to do next.</p></div>
+              </div>
+              <div class="loop-card">
+                <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 7-6 2-2 6z"/></svg></span>
+                <div><h4>3. Act</h4><p>The model outputs one action from the action space.</p></div>
+              </div>
+              <div class="loop-card">
+                <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>
+                <div><h4>4. Environment responds</h4><p>It executes the action and returns reward + next observation.</p></div>
+              </div>
+              <div class="loop-card is-active">
+                <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg></span>
+                <div><h4>Repeat</h4><p>Continue until done, max steps, or timeout.</p></div>
+              </div>
+            </div>
+          </div>
+          <span class="pagenum">04 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 05 · THE PROCESS (cards-row) ░░ -->
+      <section>
+        <div class="stage stage--stack">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div>
+            <p class="eyebrow leaf" style="margin-bottom:24px">THE PROCESS</p>
+            <h2 class="s-display">From your idea to a<br /><em>public showcase.</em></h2>
+          </div>
+          <div class="cards-row">
+            <div class="step-card">
+              <span class="lbl">I. Initialize</span>
+              <h4>Write your env</h4>
+              <p>Create your public GitHub repo. <strong>Include:</strong> env.py, adapter.py, benchanything.json. (More on it later.)</p>
+            </div>
+            <span class="arrow">&rsaquo;</span>
+            <div class="step-card">
+              <span class="lbl">II. Submit</span>
+              <h4>Publish your env</h4>
+              <p>Using the form or the API, submit your environment with your GitHub repo and username.</p>
+            </div>
+            <span class="arrow">&rsaquo;</span>
+            <div class="step-card">
+              <span class="lbl">III. Onboard</span>
+              <h4>Check the health</h4>
+              <p>Status goes pending &rarr; cloning &rarr; ready. Confirm everything is healthy and ready to bench.</p>
+            </div>
+            <span class="arrow">&rsaquo;</span>
+            <div class="step-card">
+              <span class="lbl">IV. Success</span>
+              <h4>See the stats</h4>
+              <p>Pick &ldquo;Test Bench&rdquo; or &ldquo;Full Bench&rdquo; to see how AI agents fare on your environments.</p>
+            </div>
+          </div>
+          <span class="pagenum">05 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 06 · THE CONTRACT (endpoints) ░░ -->
+      <section>
+        <div class="stage stage--stack">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div>
+            <p class="eyebrow leaf" style="margin-bottom:24px">THE CONTRACT</p>
+            <h2 class="s-display">If your env can answer these<br /><em>four endpoints,</em> we can bench it.</h2>
+          </div>
+          <div class="endpoints">
+            <div class="endpoint"><span class="verb"><span class="m">GET</span> <span class="p">/health</span></span><div><h4>Is the server alive?</h4><p>The sandbox waits up to 30s for a 200 OK before marking your env ready.</p></div></div>
+            <div class="endpoint"><span class="verb"><span class="m">POST</span> <span class="p">/reset</span></span><div><h4>Start a new episode.</h4><p>Takes a seed &mdash; pick the secret word, deal the cards, return the first observation.</p></div></div>
+            <div class="endpoint"><span class="verb"><span class="m">POST</span> <span class="p">/step</span></span><div><h4>Apply one action.</h4><p>Return the next observation, a reward, and whether the episode terminated or truncated.</p></div></div>
+            <div class="endpoint"><span class="verb"><span class="m">POST</span> <span class="p">/close</span></span><div><h4>Tear it down.</h4><p>The episode is finished. Release any state you were holding for this episode_id.</p></div></div>
+          </div>
+          <div class="opt-render"><span class="lead-in">Optional:</span> <span class="m">POST /render</span> &mdash; shows what the current environment looks like</div>
+          <span class="pagenum">06 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 07 · LOCAL CHECKLIST (terminal) ░░ -->
+      <section>
+        <div class="stage stage--stack">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div>
+            <p class="eyebrow leaf" style="margin-bottom:24px">LOCAL CHECKLIST</p>
+            <h2 class="s-display">Run the four endpoints <em>by hand</em><br />before pushing.</h2>
+          </div>
+          <div class="terminal">
+            <span class="filename">terminal</span>
+<span class="cmt"># 1. start the adapter on a port you choose</span>
+<span class="pr">$</span> python adapter.py --port <span class="num">8765</span>
+<span class="cmt"># 2. is it alive?</span>
+<span class="pr">$</span> curl -s http://localhost:8765/health
+<span class="out">{"status": "ok"}</span>
+<span class="cmt"># 3. reset — same seed, same secret word</span>
+<span class="pr">$</span> curl -sX POST http://localhost:8765/reset -d <span class="str">'{"episode_id":"x","seed":42}'</span>
+<span class="cmt"># 4. take a step</span>
+<span class="pr">$</span> curl -sX POST http://localhost:8765/step -d <span class="str">'{"episode_id":"x","action":"crane"}'</span>
+<span class="cmt"># 5. and close it</span>
+<span class="pr">$</span> curl -sX POST http://localhost:8765/close -d <span class="str">'{"episode_id":"x"}'</span></div>
+          <span class="pagenum">07 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 08 · FILE ONE — env.py ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <p class="eyebrow leaf">FILE ONE</p>
+            <h2 class="s-title"><em>env.py</em> &mdash; the game/task logic.</h2>
+            <p class="s-subtitle" style="font-size:32px; margin-top:-4px">Implements:</p>
+            <ul class="rlist">
+              <li><span class="rn">i.</span> Hidden State &mdash; information the env knows but not the model</li>
+              <li><span class="rn">ii.</span> Reward &mdash; a score returned after an action</li>
+              <li><span class="rn">iii.</span> Termination &mdash; a condition that ends the episode</li>
+              <li><span class="rn">iv.</span> reset(seed) &mdash; starts a new episode</li>
+              <li><span class="rn">v.</span> step(action) &mdash; intake one action from the model</li>
+            </ul>
+          </div>
+          <div class="col col--figure">
+            <div class="codeblock">
+              <span class="filename">env.py</span>
+              <pre><code data-trim class="language-python"># env.py — Wordle, abridged
+from src.env_sdk import BaseEnv, StepResult
+
+class WordleEnv(BaseEnv):
+    def reset(self, seed=None, **params):
+        rng = random.Random(seed)
+        self._secret = rng.choice(WORDLIST)
+        self._guesses_used = 0
+        return {"feedback": None, "guesses_remaining": 6}
+
+    def step(self, action):
+        guess = action.strip().lower()
+        feedback = score_guess(guess, self._secret)
+        self._guesses_used += 1
+        won = guess == self._secret
+        done = won or self._guesses_used >= 6
+        return StepResult(
+            observation={"last_guess": guess,
+                         "feedback": feedback,
+                         "guesses_remaining": 6 - self._guesses_used},
+            reward=1.0 if won else 0.0,
+            terminated=done, truncated=False,
+            info={"won": "1.0" if won else "0.0"},
+        )</code></pre>
+            </div>
+          </div>
+          <span class="pagenum">08 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 09 · FILE TWO — adapter.py (reversed) ░░ -->
+      <section>
+        <div class="stage stage--split-rev">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--figure">
+            <div class="codeblock">
+              <span class="filename">adapter.py</span>
+              <pre><code data-trim class="language-python"># adapter.py — wires your env to HTTP
+import argparse
+from env import WordleEnv         # local import, not
+from src.env_sdk import serve     # "from template.env"
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser()
+    p.add_argument("--host", default="0.0.0.0")
+    p.add_argument("--port", type=int, default=8765)
+    args = p.parse_args()
+    serve(WordleEnv, host=args.host, port=args.port)</code></pre>
+            </div>
+          </div>
+          <div class="col col--head">
+            <p class="eyebrow leaf">FILE TWO</p>
+            <h2 class="s-title"><em>adapter.py</em> &mdash; the server.</h2>
+            <p class="s-subtitle" style="font-size:32px; margin-top:-4px">Functions:</p>
+            <ul class="rlist">
+              <li><span class="rn">i.</span> imports your env</li>
+              <li><span class="rn">ii.</span> accepts <span class="mono">--port</span></li>
+              <li><span class="rn">iii.</span> starts the HTTP server</li>
+              <li><span class="rn">iv.</span> exposes /health, /reset, /step, /close (optional /render)</li>
+            </ul>
+          </div>
+          <span class="footer-caps">adapter.py · the server</span>
+          <span class="pagenum">09 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 10 · FILE THREE — benchanything.json ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <p class="eyebrow leaf">FILE THREE</p>
+            <h2 class="s-title"><em>benchanything.json</em> &mdash; the rulebook.</h2>
+            <p class="s-subtitle" style="font-size:32px; margin-top:-4px">Tells us:</p>
+            <ul class="rlist">
+              <li><span class="rn">i.</span> what file to run</li>
+              <li><span class="rn">ii.</span> what the env is called</li>
+              <li><span class="rn">iii.</span> what the agent sees</li>
+              <li><span class="rn">iv.</span> what actions are valid</li>
+              <li><span class="rn">v.</span> how reward works</li>
+              <li><span class="rn">vi.</span> how scoring works</li>
+            </ul>
+          </div>
+          <div class="col col--figure">
+            <div class="codeblock">
+              <span class="filename">benchanything.json</span>
+              <pre><code data-trim class="language-json">{
+  "adapter": "adapter.py",
+  "name": "Wordle",
+  "description": "6 tries to guess a 5-letter word.",
+  "binding_vow": {
+    "version": "1.0.0",
+    "observation_space": { "type": "json" },
+    "action_space": { "type": "text",
+      "description": "A 5-letter lowercase word." },
+    "reward": { "type": "binary",
+      "range": { "low": 0.0, "high": 1.0 } },
+    "episode": { "max_steps": 6,
+      "deterministic_reset": true,
+      "supports_seed": true }
+  },
+  "scoring": {
+    "primary_metric": "win_rate",
+    "higher_is_better": true,
+    "metrics": [
+      { "name": "win_rate", "type": "terminal_field",
+        "field": "won", "aggregation": "pass_rate" }
+    ]
+  }
+}</code></pre>
+            </div>
+          </div>
+          <span class="footer-caps">benchanything.json · the binding vow</span>
+          <span class="pagenum">10 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 11 · THE PACKAGE ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <p class="eyebrow leaf">THE PACKAGE</p>
+            <h2 class="s-title">The files to build <em>everything.</em></h2>
+            <p class="copy" style="font-size:26px; max-width:32ch">You only need 3 files to create an environment and submit it. An optional fourth is recommended.</p>
+            <div class="filetree"><span class="dir">wordle-env/</span>
+  env.py             <span class="cm"># task logic — the game</span>
+  adapter.py         <span class="cm"># server wrapper · Mesocosm→env</span>
+  benchanything.json <span class="cm"># manifest, rulebook</span>
+  requirements.txt   <span class="cm"># optional deps</span></div>
+          </div>
+          <div class="col col--figure">
+            <div class="codeblock">
+              <span class="filename">integration_test.sh</span>
+              <div class="pseudocode" style="font-family:var(--f-mono); white-space:pre; color:var(--ink)"><span class="cm"># integration_test.sh — pseudocode</span>
+
+<span class="kw">SET</span> BASE_URL = MESOCOSM_BASE_URL or <span class="str">"https://api.swecc.org/bench"</span>
+<span class="kw">SET</span> REPO_URL = REPO_URL or <span class="str">"https://github.com/FWT-bs/environments"</span>
+
+<span class="kw">PRINT</span> <span class="str">"Mesocosm integration test"</span>
+
+<span class="cm"># 1. Check required local files</span>
+REQUIRED_FILES = [benchanything.json, env.py, adapter.py, requirements.txt]
+<span class="kw">IF</span> any required file is missing:  <span class="kw">PRINT</span> warning · <span class="kw">STOP</span>
+
+<span class="cm"># 2. Validate benchanything.json</span>
+<span class="kw">IF</span> benchanything.json is not valid JSON:  <span class="kw">PRINT</span> error · <span class="kw">STOP</span>
+<span class="kw">ELSE</span>:  <span class="kw">PRINT</span> success
+
+<span class="cm"># 3. Check hosted API health + OpenAPI</span>
+<span class="kw">GET</span> {BASE_URL}/health        →  <span class="kw">REPORT</span>
+<span class="kw">GET</span> {BASE_URL}/openapi.json   →  <span class="kw">REPORT</span>
+
+<span class="cm"># 4. Submit environment repo</span>
+<span class="kw">POST</span> {BASE_URL}/v1/developer/environments with:
+    owner_id    = <span class="str">"FWT-bs"</span>
+    name        = <span class="str">"Tic Tac Toe Smoke Test"</span>
+    github_url  = REPO_URL
+    description = <span class="str">"Compact tic-tac-toe benchmark"</span>
+<span class="kw">REPORT</span> success or failure
+
+<span class="kw">PRINT</span> <span class="str">"Done."</span></div>
+            </div>
+          </div>
+          <span class="pagenum">11 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 12 · WE HANDLE THE REST ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <h2 class="s-display" style="font-size:80px">You submit your env,<br /><em>we handle the rest.</em></h2>
+            <p class="copy" style="margin-top:32px; max-width:32ch">After you submit, we run your environments against agents &mdash; testing both that your environment is configured properly and the capability of the different agents.</p>
+          </div>
+          <div class="col col--figure">
+            <p class="minihead">UI</p>
+            <div class="form-mock">
+              <div><div class="mlabel">Your ID / Handle</div><div class="mval">acme-corp</div></div>
+              <div><div class="mlabel">Environment Name</div><div class="mval">my coding bench</div></div>
+              <div><div class="mlabel">GitHub Repository URL</div><div class="mval">https://github.com/your-org/your-env</div><div class="hint" style="margin-top:8px">Repository must contain a benchanything.json at its root.</div></div>
+            </div>
+            <p class="minihead" style="margin-top:44px">CLI</p>
+            <div class="install"><b>To install:</b>pip install swecc-mesocosm
+mesocosm --version<b>To eliminate setup:</b>bench init</div>
+          </div>
+          <span class="pagenum">12 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 13 · GRADING — concept ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <p class="eyebrow leaf">AUTOMATED GRADING</p>
+            <h2 class="s-title">Your env emits signal.<br /><em>scoring</em> decides the verdict.</h2>
+            <div class="copy copy--dense" style="margin-top:6px">
+              <p>The environment never grades itself. Each <span class="mono">step()</span> returns a <span class="mono">reward</span> and an <span class="mono">info</span> dict.</p>
+              <p>Your <span class="mono">scoring</span> block in <span class="mono">benchanything.json</span> turns those signals into metrics &mdash; pass/fail or a continuous score &mdash; ranked by a <span class="mono">primary_metric</span>.</p>
+              <p>One env, re-scored any way, without touching env code.</p>
+            </div>
+          </div>
+          <div class="col col--figure">
+            <div class="panel">
+              <div style="display:flex; flex-direction:column; gap:14px; align-items:flex-start">
+                <span class="pstep">step() &rarr; <b>reward + info</b></span>
+                <span class="par" style="color:var(--leaf); font-size:24px; padding-left:24px">&darr;</span>
+                <span class="pstep">episode &rarr; <b>total_reward + terminal_info</b></span>
+                <span class="par" style="color:var(--leaf); font-size:24px; padding-left:24px">&darr;</span>
+                <span class="pstep">scoring.<b>metrics</b> &mdash; aggregate (mean / pass_rate &hellip;)</span>
+                <span class="par" style="color:var(--leaf); font-size:24px; padding-left:24px">&darr;</span>
+                <span class="pstep"><b>primary_metric</b> &rarr; leaderboard</span>
+              </div>
+            </div>
+          </div>
+          <span class="pagenum">13 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 14 · GRADING — pass/fail vs scored ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <p class="eyebrow leaf">TWO FLAVORS</p>
+            <h2 class="s-title">Pass/fail, or <em>scored.</em></h2>
+            <div class="copy copy--dense" style="margin-top:6px">
+              <p>Same env, two scoring blocks. The <span class="mono">aggregation</span> is the dial.</p>
+              <p><span class="em">pass_rate</span> counts wins (reward 1.0/0.0). <span class="em">mean</span> averages a graded reward in [0,1].</p>
+              <p>Raise <span class="mono">pass_threshold</span> to demand partial credit before something counts as a pass.</p>
+            </div>
+          </div>
+          <div class="col col--figure" style="gap:18px">
+            <div class="codeblock">
+              <span class="filename">pass / fail</span>
+              <pre><code data-trim class="language-json">"scoring": {
+  "primary_metric": "accuracy",
+  "higher_is_better": true,
+  "metrics": [
+    { "name": "accuracy",
+      "type": "episode_reward",
+      "aggregation": "pass_rate" }
+  ]
+}</code></pre>
+            </div>
+            <div class="codeblock">
+              <span class="filename">scored</span>
+              <pre><code data-trim class="language-json">"scoring": {
+  "primary_metric": "mean_score",
+  "higher_is_better": true,
+  "metrics": [
+    { "name": "mean_score",
+      "type": "episode_reward",
+      "aggregation": "mean" }
+  ]
+}</code></pre>
+            </div>
+          </div>
+          <span class="pagenum">14 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 15 · GRADING — multi-criteria + best practices ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--figure">
+            <div class="codeblock">
+              <span class="filename">multi-criteria rubric</span>
+              <pre><code data-trim class="language-json">"scoring": {
+  "primary_metric": "success_rate",
+  "higher_is_better": true,
+  "metrics": [
+    { "name": "success_rate",
+      "type": "terminal_field", "field": "success",
+      "aggregation": "pass_rate", "pass_threshold": 0.5 },
+    { "name": "avg_reward",
+      "type": "episode_reward", "aggregation": "mean" },
+    { "name": "avg_steps",
+      "type": "terminal_field", "field": "steps",
+      "aggregation": "mean" }
+  ]
+}</code></pre>
+            </div>
+          </div>
+          <div class="col col--head">
+            <p class="eyebrow leaf">RUBRICS DONE RIGHT</p>
+            <h2 class="s-title">Combine criteria.<br /><em>Guard</em> the score.</h2>
+            <ul class="rlist" style="margin-top:4px">
+              <li><span class="rn">i.</span> Emit signal, not verdicts &mdash; let scoring decide</li>
+              <li><span class="rn">ii.</span> Name a <span class="mono">primary_metric</span> that exists; set <span class="mono">higher_is_better</span></li>
+              <li><span class="rn">iii.</span> Be deterministic &amp; seed-stable; set a real <span class="mono">max_steps</span></li>
+              <li><span class="rn">iv.</span> Emit clean numeric <span class="mono">info</span> for <span class="mono">terminal_field</span> metrics</li>
+              <li><span class="rn">v.</span> Add secondary diagnostics to catch reward-hacking</li>
+            </ul>
+          </div>
+          <span class="footer-caps">benchanything.json · scoring</span>
+          <span class="pagenum">15 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 16 · DEMO — Intertwine ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <p class="eyebrow leaf">DEMO &middot; 01</p>
+            <h2 class="s-display" style="font-size:84px"><em>Intertwine.</em></h2>
+            <p class="s-subtitle" style="margin-top:-2px">Don't lose your contexts.</p>
+            <ul class="demo-bullets" style="margin-top:16px">
+              <li>Capture, sync &amp; resume your AI coding sessions</li>
+              <li>Pick up any past conversation, from any directory</li>
+              <li>Share sessions with your teammates</li>
+              <li>CLI + Cloudflare Worker + S3 &mdash; built for teams</li>
+            </ul>
+          </div>
+          <div class="col col--figure">
+            <div class="qr-row" style="gap:30px; justify-content:flex-start">
+              <div class="qr-card"><div class="qbox" style="padding:12px"><img src="./assets/qr/intertwine-dev.png" alt="intertwine.dev" style="width:158px;height:158px" /></div><div class="qurl">intertwine.dev</div></div>
+              <div class="qr-card"><div class="qbox" style="padding:12px"><img src="./assets/qr/intertwine-pages.png" alt="intertwine-site.pages.dev" style="width:158px;height:158px" /></div><div class="qurl">intertwine-site.pages.dev</div></div>
+            </div>
+            <div class="note" style="margin-top:34px"><p class="nt">Simon will <em>demo it live.</em></p></div>
+          </div>
+          <span class="pagenum">16 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 17 · DEMO — KleoKlaw ░░ -->
+      <section>
+        <div class="stage stage--split">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <div class="col col--head">
+            <p class="eyebrow leaf">DEMO &middot; 02</p>
+            <h2 class="s-display" style="font-size:84px"><em>KleoKlaw.</em></h2>
+            <p class="s-subtitle" style="margin-top:-2px">A job board you run from your texts.</p>
+            <ul class="demo-bullets" style="margin-top:16px">
+              <li>Text a number to post or find a job &mdash; no app, no login</li>
+              <li>An SMS gateway routes your message to the backend</li>
+              <li>It tracks your thread and reads/writes listings</li>
+              <li>Replies come right back over text</li>
+            </ul>
+          </div>
+          <div class="col col--figure">
+            <div style="display:flex; align-items:center; gap:32px">
+              <div class="demo-logo" style="width:230px; height:230px; flex:none"><img src="./assets/kleoklaw-logo.png" alt="KleoKlaw" /></div>
+              <div class="qr-card"><div class="qbox" style="padding:12px"><img src="./assets/qr/kleoklaw.png" alt="kleoklaw.com" style="width:158px;height:158px" /></div><div class="qurl">kleoklaw.com</div></div>
+            </div>
+            <div class="note" style="margin-top:34px"><p class="nt">Humphrey will <em>demo it live.</em></p></div>
+          </div>
+          <span class="pagenum">17 / 18</span>
+        </div>
+      </section>
+
+      <!-- ░░ 18 · Q&A / BRAINSTORM (flip-to, no timing) ░░ -->
+      <section>
+        <div class="stage qa">
+          <span class="brand">swe<span class="chev a">&lt;</span><span class="chev b">&lt;</span></span>
+          <h2>Q <em>&amp;</em> A</h2>
+          <p>Open floor &mdash; questions &amp; brainstorm.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+  <script src="../shared/vendor/reveal/reveal.js"></script>
+  <script src="../shared/vendor/reveal/highlight.js"></script>
+  <script src="../shared/deck.js"></script>
+</body>
+</html>

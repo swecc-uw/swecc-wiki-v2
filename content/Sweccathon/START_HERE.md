@@ -16,6 +16,9 @@ tags:
 
 Central hub for the **mesocosm** command-line tool — SWECC's BenchAnything / Mesocosm platform.
 
+> [!tip] New here?
+> Event logistics → **[[Sweccathon/event-slides|SWECCATHON 2026 slides]]**. Then the platform tour → **[[Sweccathon/mesocosm/slides|mesocosm overview slides]]**.
+
 **Install with pip** (recommended — the package is published on PyPI):
 
 ```bash
@@ -52,6 +55,7 @@ mesocosm run create --domain YOUR_DOMAIN_ID --vow-version 1.0.0 --model gemini/g
 
 ## Guides
 
+- [[Sweccathon/mesocosm/slides]] — **Overview slides** — visual tour of the platform
 - [[Sweccathon/mesocosm/getting-started]] — Install, first commands, production vs local
 - [[Sweccathon/mesocosm/local-development]] — Ollama loop, adapter, `run local`
 - [[Sweccathon/mesocosm/authentication]] — Login, guest, tokens, logout
