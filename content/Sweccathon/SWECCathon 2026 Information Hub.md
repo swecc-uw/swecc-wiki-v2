@@ -16,6 +16,8 @@ Welcome to the much-anticipated 2025 SWECCathon! We are thrilled to have you her
 
 ## Hackathon Information
 
+- [[Sweccathon/event-slides|SWECCATHON 2026 — Event slides]] — logistics, tracks, judging, deadlines
+- [[Sweccathon/mesocosm/slides|Mesocosm overview slides]] — visual tour of the platform
 - [[Sweccathon/START_HERE|Mesocosm CLI]] — install, local dev, submit, benchmark runs
 - General Hackathon Information — _(add links as needed)_
 

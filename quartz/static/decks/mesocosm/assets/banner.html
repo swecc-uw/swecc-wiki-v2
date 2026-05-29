@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="file:///Users/simon/Desktop/swecc-wiki-v2/quartz/static/design-system/colors_and_type.css">
+<style>
+  /* ── design tokens (banner-local, from task spec hex values) ── */
+  :root{
+    --forest:      #15251B;
+    --surface:     #1B2E22;
+    --cream:       #ECE7D7;
+    --sage:        #AEB9A8;
+    --muted:       #6E7D70;
+    --leaf:        #7FA779;
+    --leaf-deep:   #9DC393;
+    --leaf-bright: #C2E8AD;
+    --hairline:    rgba(184,208,176,0.18);
+  }
+
+  html,body{ margin:0; padding:0; }
+  html,body{ width:1170px; height:156px; overflow:hidden; }
+
+  body{
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .banner{
+    position:relative;
+    width:1170px;
+    height:156px;
+    box-sizing:border-box;
+    overflow:hidden;
+    background:
+      /* faint vignette — lighter toward center-top */
+      radial-gradient(120% 160% at 50% 8%,
+        rgba(157,195,147,0.085) 0%,
+        rgba(27,46,34,0.30) 42%,
+        rgba(21,37,27,0.0) 72%),
+      linear-gradient(180deg, #182A1F 0%, var(--forest) 60%, #122017 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* hairline frame top + bottom */
+  .banner::before,
+  .banner::after{
+    content:"";
+    position:absolute;
+    left:0; right:0;
+    height:1px;
+    background:linear-gradient(90deg,
+      rgba(184,208,176,0) 0%,
+      var(--hairline) 18%,
+      var(--hairline) 82%,
+      rgba(184,208,176,0) 100%);
+  }
+  .banner::before{ top:0; }
+  .banner::after{ bottom:0; }
+
+  /* centered content cluster */
+  .cluster{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    z-index:3;
+  }
+
+  /* ── swe<< wordmark ── */
+  .wordmark{
+    font-family:'Jost', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:0.02em;
+    line-height:1;
+    color:var(--cream);
+    display:inline-flex;
+    align-items:baseline;
+  }
+  .wordmark .chev{ font-weight:700; letter-spacing:-0.04em; margin-left:0.12em; }
+  .wordmark .c1{ color:var(--leaf); }
+  .wordmark .c2{ color:var(--leaf-bright); margin-left:-0.02em; }
+
+  /* ── title row: sigil · title · sigil ── */
+  .title-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:32px;
+  }
+
+  .title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size:58px;
+    line-height:1;
+    letter-spacing:0.085em;
+    /* nudge so optical center accounts for trailing letter-spacing */
+    padding-left:0.085em;
+    color:var(--cream);
+    white-space:nowrap;
+  }
+  .title .yr{
+    font-style:italic;
+    font-weight:500;
+    color:var(--leaf-deep);
+    letter-spacing:0.05em;
+  }
+  .title .dash{
+    color:var(--muted);
+    font-weight:400;
+    margin:0 0.04em;
+  }
+
+  /* flanking botanical sigils — faint */
+  .sigil{
+    width:38px; height:38px;
+    opacity:0.42;
+    flex:0 0 auto;
+  }
+  .sigil svg{ display:block; width:100%; height:100%; }
+  .sigil.left{ transform:scaleX(-1); }
+
+  /* tiny eyebrow under title */
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    text-transform:uppercase;
+    font-weight:500;
+    font-size:9px;
+    letter-spacing:0.34em;
+    color:var(--sage);
+    padding-left:0.34em;
+  }
+  .eyebrow .dot{ color:var(--leaf); padding:0 0.55em; }
+</style>
+</head>
+<body>
+  <div class="banner">
+    <div class="cluster">
+
+      <div class="wordmark">swe<span class="chev"><span class="c1">&lt;</span><span class="c2">&lt;</span></span></div>
+
+      <div class="title-row">
+        <span class="sigil left" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#7FA779" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 56 L 32 8"></path><path d="M32 50 Q 22 46, 18 38"></path><path d="M32 50 Q 42 46, 46 38"></path><path d="M32 42 Q 23 38, 19 30"></path><path d="M32 42 Q 41 38, 45 30"></path><path d="M32 34 Q 25 30, 22 24"></path><path d="M32 34 Q 39 30, 42 24"></path><path d="M32 26 Q 27 22, 25 18"></path><path d="M32 26 Q 37 22, 39 18"></path><path d="M32 18 Q 30 15, 29 12"></path><path d="M32 18 Q 34 15, 35 12"></path></svg>
+        </span>
+
+        <div class="title">SWECCATHON<span class="dash">&ndash;</span><span class="yr">2026</span></div>
+
+        <span class="sigil right" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#7FA779" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 56 L 32 8"></path><path d="M32 50 Q 22 46, 18 38"></path><path d="M32 50 Q 42 46, 46 38"></path><path d="M32 42 Q 23 38, 19 30"></path><path d="M32 42 Q 41 38, 45 30"></path><path d="M32 34 Q 25 30, 22 24"></path><path d="M32 34 Q 39 30, 42 24"></path><path d="M32 26 Q 27 22, 25 18"></path><path d="M32 26 Q 37 22, 39 18"></path><path d="M32 18 Q 30 15, 29 12"></path><path d="M32 18 Q 34 15, 35 12"></path></svg>
+        </span>
+      </div>
+
+      <div class="eyebrow">BENCHMARKS<span class="dot">&middot;</span>SIMS<span class="dot">&middot;</span>BUILD WEEKEND</div>
+
+    </div>
+  </div>
+</body>
+</html>

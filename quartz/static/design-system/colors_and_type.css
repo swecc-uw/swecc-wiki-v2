@@ -1,0 +1,369 @@
+/* ═══════════════════════════════════════════════════════════════════
+   MESOCOSM — DESIGN TOKENS
+   A clean, dictionary-quiet identity for a benchmarking platform.
+   "Benchmarks and sims for literally anything."
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Self-hosted display + body. No web fonts at runtime. ──────── */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('fonts/CormorantGaramond-VariableFont_wght.ttf') format('truetype-variations'),
+       url('fonts/CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('fonts/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype-variations'),
+       url('fonts/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('fonts/Jost-VariableFont_wght.ttf') format('truetype-variations'),
+       url('fonts/Jost-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('fonts/Jost-Italic-VariableFont_wght.ttf') format('truetype-variations'),
+       url('fonts/Jost-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* ═══ FONT FAMILIES ════════════════════════════════════════════
+     Two families. They do different jobs and never overlap.
+
+     - Display  · Cormorant Garamond. The brand voice. The word
+       "Mesocosm" itself, headlines, definitions, italic accents.
+       Always set with -0.015em or tighter tracking. The italic is
+       the star — use it for the *botanical* half of two-tone titles.
+
+     - Body / UI · Jost. A geometric humanist sans. Quiet, clinical,
+       slightly wide. All UI text, labels, body, buttons, table cells,
+       leaderboards, code samples. Default weight 400; 500 for emphasis.
+
+     Numbers: tabular by default in tables (--num-tab below). Big
+     editorial figures — hero stats, score panels — are rendered in
+     Cormorant Italic 500, which gives a beautiful old-style figure.
+     ════════════════════════════════════════════════════════════ */
+  --f-display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --f-body:    'Jost', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono:    ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  /* ═══ COLOR · CANVAS ═══════════════════════════════════════════
+     The whole product sits on near-white. Off-white where surfaces
+     stack, a single recessed grey for chrome moments. Never warm.
+     ════════════════════════════════════════════════════════════ */
+  --paper:       #FFFFFF;                  /* page background */
+  --paper-2:     oklch(0.985 0.003 150);   /* recessed fills, table headers */
+  --paper-3:     oklch(0.965 0.005 150);   /* hover on chips & rows */
+  --vellum:      oklch(0.99  0.008 150);   /* hero fill — barely-there green wash */
+
+  /* Ink — formal black for benchmark text, never a softened grey. */
+  --ink:         #0E1110;                  /* primary text, primary button */
+  --ink-2:       oklch(0.32 0.008 150);    /* secondary text, lead copy */
+  --ink-3:       oklch(0.50 0.008 150);    /* tertiary, captions */
+  --muted:       oklch(0.62 0.006 150);    /* meta, hint, footnote */
+  --line:        oklch(0.92 0.008 150);    /* default border / hairline */
+  --line-2:      oklch(0.86 0.010 150);    /* stronger border / input */
+
+  /* ═══ COLOR · ACCENT (LEAF) ════════════════════════════════════
+     The single accent. A subtle, cool, slightly-grey leafy green.
+     Used for: italic headline emphasis, the live dot, hover states,
+     small chart marks, the wordmark dot. Never a button, never a
+     filled background larger than ~80px wide.
+     ════════════════════════════════════════════════════════════ */
+  --leaf:        oklch(0.52 0.10 150);     /* primary accent */
+  --leaf-deep:   oklch(0.38 0.10 150);     /* italic-em color, link hover */
+  --leaf-soft:   oklch(0.78 0.06 150);     /* charts, subtle fills */
+  --leaf-tint:   oklch(0.94 0.025 150);    /* wash, chip hover */
+  --leaf-faint:  oklch(0.985 0.012 150);   /* hero sub-wash */
+
+  /* ═══ COLOR · SEMANTIC ════════════════════════════════════════
+     Quiet on purpose. Status reads as text + a 6px dot, not a
+     colored card.
+     ════════════════════════════════════════════════════════════ */
+  --ok:    oklch(0.55 0.10 150);
+  --warn:  oklch(0.66 0.13 75);
+  --bad:   oklch(0.55 0.15 25);
+
+  /* ═══ RADII ═══════════════════════════════════════════════════
+     Two radii. 2px for cards/inputs/panels (architectural, square-ish
+     like a printed catalog page). 999px for buttons/chips/dots
+     (tactile). Nothing in between.
+     ════════════════════════════════════════════════════════════ */
+  --radius:    2px;
+  --radius-md: 6px;          /* used only for the Tweaks panel & modals */
+  --radius-pill: 999px;
+
+  /* ═══ SHADOWS ═════════════════════════════════════════════════
+     Three shadows, all fundamentally green-tinted black at very
+     low alpha. Borders do most of the structural work.
+     ════════════════════════════════════════════════════════════ */
+  --shadow-soft:  0 1px 2px oklch(0.20 0.04 150 / 0.04),
+                  0 4px 16px oklch(0.20 0.04 150 / 0.04);
+  --shadow-float: 0 16px 48px -16px oklch(0.20 0.04 150 / 0.22);
+  --shadow-deep:  0 24px 64px -20px oklch(0.20 0.04 150 / 0.36);
+
+  /* ═══ SPACING — 4px base ═════════════════════════════════════ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* ═══ LAYOUT ═════════════════════════════════════════════════ */
+  --wrap:       1280px;
+  --wrap-wide:  1440px;
+  --wrap-text:   720px;        /* reading column */
+  --wrap-pad:   40px;
+
+  /* ═══ MOTION ═════════════════════════════════════════════════ */
+  --ease-soft: cubic-bezier(.2,.7,.2,1);
+  --dur-fast:  .15s;
+  --dur:       .2s;
+  --dur-slow:  .35s;
+
+  /* ═══ TYPE ROLES ══════════════════════════════════════════════
+     The dictionary entry is the strongest single moment in the
+     identity. For it specifically, set the word at 'wordmark' size
+     and the definition body in 'def' size.
+
+     Cormorant looks fragile below ~32px — keep it for display roles
+     and the occasional pull quote. UI text is always Jost.
+     ════════════════════════════════════════════════════════════ */
+  --t-wordmark-size:    clamp(96px, 16vw, 240px);  /* the word "Mesocosm" */
+  --t-wordmark-weight:  500;
+  --t-wordmark-track:   -0.025em;
+  --t-wordmark-lh:      0.95;
+
+  --t-display-1-size:   clamp(64px, 8vw, 120px);
+  --t-display-1-weight: 500;
+  --t-display-1-track:  -0.02em;
+  --t-display-1-lh:     1.0;
+
+  --t-display-2-size:   72px;
+  --t-display-2-weight: 500;
+  --t-display-2-track:  -0.02em;
+  --t-display-2-lh:     1.05;
+
+  --t-h1-size:    48px;
+  --t-h1-weight:  500;
+  --t-h1-track:   -0.018em;
+  --t-h1-lh:      1.08;
+
+  --t-h2-size:    36px;
+  --t-h2-weight:  500;
+  --t-h2-track:   -0.015em;
+  --t-h2-lh:      1.1;
+
+  --t-h3-size:    24px;
+  --t-h3-weight:  500;
+  --t-h3-track:   -0.01em;
+  --t-h3-lh:      1.2;
+
+  /* Body & UI — Jost. */
+  --t-body-size:  14px;
+  --t-body-lh:    1.55;
+  --t-body-track: 0.005em;
+  --t-body-weight: 400;
+
+  --t-lead-size:  17px;
+  --t-lead-lh:    1.55;
+  --t-lead-weight: 400;
+
+  --t-small-size: 12.5px;
+  --t-small-lh:   1.5;
+
+  --t-caps-size:  10.5px;
+  --t-caps-track: 0.16em;
+
+  --t-eyebrow-size:  10px;
+  --t-eyebrow-track: 0.22em;
+
+  /* Phonetic — the small italic IPA-ish line under the word. */
+  --t-phon-size:   clamp(18px, 2vw, 26px);
+  --t-phon-weight: 400;
+  --t-phon-track:  0;
+
+  /* Definition body — the leading paragraph of the dictionary entry. */
+  --t-def-size:  clamp(20px, 2.2vw, 28px);
+  --t-def-lh:    1.5;
+  --t-def-weight: 400;
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   BASE
+   ═════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  letter-spacing: var(--t-body-track);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   TYPE CLASSES
+   ═════════════════════════════════════════════════════════════════ */
+
+.t-wordmark {
+  font-family: var(--f-display);
+  font-size: var(--t-wordmark-size);
+  font-weight: var(--t-wordmark-weight);
+  letter-spacing: var(--t-wordmark-track);
+  line-height: var(--t-wordmark-lh);
+  color: var(--ink);
+}
+.t-display-1 {
+  font-family: var(--f-display);
+  font-size: var(--t-display-1-size);
+  font-weight: var(--t-display-1-weight);
+  letter-spacing: var(--t-display-1-track);
+  line-height: var(--t-display-1-lh);
+}
+.t-display-2 {
+  font-family: var(--f-display);
+  font-size: var(--t-display-2-size);
+  font-weight: var(--t-display-2-weight);
+  letter-spacing: var(--t-display-2-track);
+  line-height: var(--t-display-2-lh);
+}
+
+h1, .h1 {
+  font-family: var(--f-display);
+  font-size: var(--t-h1-size); font-weight: var(--t-h1-weight);
+  letter-spacing: var(--t-h1-track); line-height: var(--t-h1-lh);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--f-display);
+  font-size: var(--t-h2-size); font-weight: var(--t-h2-weight);
+  letter-spacing: var(--t-h2-track); line-height: var(--t-h2-lh);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--f-display);
+  font-size: var(--t-h3-size); font-weight: var(--t-h3-weight);
+  letter-spacing: var(--t-h3-track); line-height: var(--t-h3-lh);
+  margin: 0;
+}
+
+/* The italic-leaf signature — this is the most recognizable
+   typographic moment in the system. Use it inside any heading. */
+.t-wordmark em, .t-display-1 em, .t-display-2 em,
+h1 em, h2 em, h3 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--leaf-deep);
+}
+
+/* Phonetic — the dictionary-style /meh-so-cos-um/ line. */
+.t-phon {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: var(--t-phon-size);
+  font-weight: var(--t-phon-weight);
+  letter-spacing: var(--t-phon-track);
+  color: var(--ink-2);
+}
+.t-phon::before { content: "/"; color: var(--ink-3); padding-right: 0.15em; }
+.t-phon::after  { content: "/"; color: var(--ink-3); padding-left:  0.15em; }
+
+/* Definition leading paragraph. */
+.t-def {
+  font-family: var(--f-display);
+  font-size: var(--t-def-size);
+  line-height: var(--t-def-lh);
+  font-weight: var(--t-def-weight);
+  color: var(--ink);
+  max-width: 36ch;
+}
+.t-def em { font-style: italic; color: var(--leaf-deep); font-weight: 500; }
+
+/* Part-of-speech label, like "n." in dictionaries. Italic, low-key. */
+.t-pos {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 0.92em;
+  color: var(--ink-3);
+  margin-right: 0.4em;
+}
+
+/* Body & lead. */
+p, .body {
+  font-family: var(--f-body);
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  color: var(--ink);
+  margin: 0 0 1em;
+}
+.lead {
+  font-family: var(--f-body);
+  font-size: var(--t-lead-size);
+  line-height: var(--t-lead-lh);
+  color: var(--ink-2);
+  max-width: 56ch;
+  font-weight: var(--t-lead-weight);
+}
+.small { font-size: var(--t-small-size); line-height: var(--t-small-lh); }
+
+/* Eyebrows / caps / labels — Jost, all-caps, wide-tracked. */
+.eyebrow {
+  font-family: var(--f-body);
+  text-transform: uppercase;
+  letter-spacing: var(--t-eyebrow-track);
+  font-size: var(--t-eyebrow-size);
+  color: var(--muted);
+  font-weight: 500;
+}
+.caps {
+  font-family: var(--f-body);
+  text-transform: uppercase;
+  letter-spacing: var(--t-caps-track);
+  font-size: var(--t-caps-size);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+/* Helpers. */
+.serif { font-family: var(--f-display); }
+.sans  { font-family: var(--f-body); }
+.mono  { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0; }
+
+/* Numerals. */
+.num-tab { font-variant-numeric: tabular-nums; }
+.num-old {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 500;
+  font-variant-numeric: oldstyle-nums;
+  letter-spacing: -0.005em;
+}
+
+/* Hairline divider. */
+.hairline, hr.hairline {
+  height: 1px; border: 0; background: var(--line); margin: 0;
+}
+
+/* Selection. */
+::selection { background: var(--leaf-tint); color: var(--ink); }
