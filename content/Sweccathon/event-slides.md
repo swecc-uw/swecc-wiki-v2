@@ -35,12 +35,13 @@ Navigate with the on-screen arrows or your keyboard (← / →). Press **F** for
 3. **The three tracks** — Games · AGI/Real-world modeling · Future of work
 4. **Judging** — the scoring rubric
 5. **Submission** — what you ship (repo · UI · demo video)
-6. **API credits** — Cursor
-7. **Prizes & sponsors** — Google, swag, food
-8. **Logistics / FAQ** — credits, docs, teams
-9. **Deadline** — 4 PM Mon June 1 → judging 5 PM
-10. **Roles & support** — the crew + Discord
-11. **Links & QR** — Devpost · Wiki · Discord
+6. **Example benchmarks** — from the Claude Opus 4.8 system card
+7. **API credits** — Cursor
+8. **Prizes & sponsors** — Google, swag, food
+9. **Logistics / FAQ** — credits, docs, teams
+10. **Deadline** — 4 PM Mon June 1 → judging 5 PM
+11. **Roles & support** — the crew + Discord
+12. **Links & QR** — Devpost · Wiki · Discord
 
 ## Related
 
