@@ -82,7 +82,7 @@ Details: [[Sweccathon/mesocosm/getting-started#configure|Configure]] · [[Swecca
 
 ## Related vault notes
 
-- [[Sweccathon/SWECCathon 2026 Information Hub]] — hackathon logistics and links
+- [[Sweccathon/event-slides|SWECCATHON 2026 — Event slides]] — logistics, tracks, judging, deadlines
 
 ## CLI help
 
