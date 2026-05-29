@@ -54,4 +54,4 @@ Navigate with the on-screen arrows or your keyboard (← / →). Press **F** for
 ## Related
 
 - [[Sweccathon/START_HERE|Mesocosm CLI — Start here]]
-- [[Sweccathon/SWECCathon 2026 Information Hub|SWECCathon 2026 Information Hub]]
+- [[Sweccathon/event-slides|SWECCATHON 2026 — Event slides]]
