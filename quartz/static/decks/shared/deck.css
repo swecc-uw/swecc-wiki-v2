@@ -422,3 +422,10 @@ html, body, .reveal-viewport { background: var(--paper); }
 .bench-card .bs small { font-size:19px; font-style:normal; color:var(--muted); letter-spacing:0.02em; }
 .bench-card .bn { font-family:var(--f-display); font-size:27px; color:var(--ink); }
 .bench-card .bd { font-family:var(--f-body); font-size:15.5px; line-height:1.4; color:var(--ink-2); }
+
+/* closing deck — clock-time timeline + sticker row */
+.timeline.times .titem { grid-template-columns:128px 1fr; }
+.timeline.times .tk { font-style:normal; font-size:30px; }
+.stickerrow { display:flex; gap:30px; justify-content:center; flex-wrap:wrap; }
+.sticker { width:340px; height:340px; border-radius:18px; overflow:hidden; border:1px solid var(--line); background:rgba(0,0,0,0.18); }
+.sticker img { width:100%; height:100%; object-fit:cover; display:block; }
