@@ -50,7 +50,7 @@ Mesocosm is built around three core primitives:
 
 Together they form a closed loop that lets users create and evaluate models on tasks in a seamless, interconnected way.
 
-
+![Mesocosm bench architecture, CLI, API, worker, sandbox, and external services](../assets/blogs/mesocosm-architecture.svg)
 
 ### The Sandbox: The Environment’s home
 
