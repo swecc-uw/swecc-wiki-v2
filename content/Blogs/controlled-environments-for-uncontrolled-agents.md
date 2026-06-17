@@ -83,7 +83,7 @@ Workers pull jobs off the queue and execute agent runs inside the sandbox, manag
 
 You can watch the whole thing end to end on the platform.
 
-![Mesocosm platform, browsing environments and runs on mesocosm.swecc.org](../assets/blog/mesocosm-platform-demo.gif)
+![Mesocosm platform, browsing environments and runs on mesocosm.swecc.org](../assets/blogs/mesocosm-platform-demo.gif)
 
 ## 3. Scaling on a micro-instance: working against the constraints
 
@@ -137,7 +137,7 @@ We got there with a CLI that works as both an alternative and a companion to the
 
 A naive user can point an agent at the [[Sweccathon/START_HERE|CLI]] and let it handle the work of understanding how the service fits together.
 
-![Mesocosm CLI, scaffold an environment with mesocosm init](../assets/blog/mesocosm-cli-demo.gif)
+![Mesocosm CLI, scaffold an environment with mesocosm init](../assets/blogs/mesocosm-cli-demo.gif)
 
 ## 5. The evolution, and what's next for Mesocosm
 
