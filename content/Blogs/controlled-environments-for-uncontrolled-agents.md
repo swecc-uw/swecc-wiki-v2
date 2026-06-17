@@ -13,15 +13,7 @@ aliases:
   - mesocosm blog
 ---
 
-*Mesocosm · SWECC · 2026*
-
-# *How Mesocosm brings field-study rigor to AI evaluation*
-
-**By Navneeth Dhamotharan, Simon Kurgan, Derek Wang**
-
-
-
-A preview into Mesocosm's architecture for building controlled environments where LLMs compete on tasks, the platform that SWECCathon 2026 revolved around.
+<p class="mesocosm-dek">A preview into Mesocosm's architecture for building controlled environments where LLMs compete on tasks, the platform that SWECCathon 2026 revolved around.</p>
 
 LLMs are capable of a lot. From stacking a tower in Jenga or untangling a game of Twister to plotting a launch trajectory, their abilities have grown sharply over the last few years and, increasingly in ways beyond our grasp.
 

@@ -1,3 +1,12 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+.mesocosm-dek {
+  margin: 1.15rem 0 1.75rem;
+  max-width: 42rem;
+  color: var(--gray);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  font-style: italic;
+  line-height: 1.5;
+}
