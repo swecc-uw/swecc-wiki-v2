@@ -83,25 +83,28 @@ One node, no GPU, 4 GB of RAM. Every decision counted.
 
 ### System constraints
 
-1
-
-Node, no GPU
-
-4 GB
-
-Total RAM
-
-3
-
-Concurrent clones
-
-10
-
-Evals at a time
-
-35
-
-Steps per run
+<div class="mesocosm-stats">
+  <div class="stat-card">
+    <div class="stat-value">1</div>
+    <div class="stat-label">Node, no GPU</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">4 GB</div>
+    <div class="stat-label">Total RAM</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">3</div>
+    <div class="stat-label">Concurrent clones</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">10</div>
+    <div class="stat-label">Evals at a time</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">35</div>
+    <div class="stat-label">Steps per run</div>
+  </div>
+</div>
 
 Running on a single node with no GPU and 4 GB of RAM meant every minor decision could make or break the platform's usability. We had to rethink the architecture around the most bare-bones constraints possible.
 
@@ -143,11 +146,11 @@ Reflecting on the build and on watching real users at SWECCathon, two things sta
 
 1. **Evaluation environments only get more important on the road to AGI.**
 
-The better models get, the more the ability to create and judge impactful benchmarks is worth. Yet most students have nowhere to start outside a research lab.
+   The better models get, the more the ability to create and judge impactful benchmarks is worth. Yet most students have nowhere to start outside a research lab.
 
-1. **Sometimes simple is the better build.**
+2. **Sometimes simple is the better build.**
 
-Especially when your goal is for people to immediately and intimately understand something they're about to pour time into. Now that we've built and hosted a whole hackathon around it, we want to open Mesocosm up to UW students and, soon, the general public.
+   Especially when your goal is for people to immediately and intimately understand something they're about to pour time into. Now that we've built and hosted a whole hackathon around it, we want to open Mesocosm up to UW students and, soon, the general public.
 
 We'll start by raising memory limits, then expand into a cluster as the per-sandbox memory footprint grows, scaling vertically first to serve the users we already have, then horizontally to bring in new ones, and dynamically as real traffic patterns fluctuate.
 

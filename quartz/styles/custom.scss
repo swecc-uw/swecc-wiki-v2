@@ -10,3 +10,43 @@
   font-style: italic;
   line-height: 1.5;
 }
+
+.mesocosm-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0 2rem;
+
+  .stat-card {
+    flex: 1 1 9rem;
+    min-width: 8.5rem;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--lightgray);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--lightgray) 28%, var(--light));
+  }
+
+  .stat-value {
+    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+}
+
+@media (max-width: 800px) {
+  .mesocosm-stats .stat-card {
+    flex: 1 1 calc(50% - 0.75rem);
+    min-width: calc(50% - 0.75rem);
+  }
+}
