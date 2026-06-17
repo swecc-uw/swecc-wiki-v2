@@ -13,3 +13,8 @@ replit.nix
 
 # macOS metadata files
 ._*
+.AppleDouble
+.LSOverride
+Icon?
+.Spotlight-V100
+.Trashes
