@@ -12,22 +12,21 @@
 }
 
 .mesocosm-stats {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.75rem;
   margin: 1.5rem 0 2rem;
 
   .stat-card {
-    flex: 1 1 9rem;
-    min-width: 8.5rem;
-    padding: 1.1rem 1.25rem;
+    min-width: 0;
+    padding: 0.9rem 0.95rem;
     border: 1px solid var(--lightgray);
     border-radius: 12px;
-    background: color-mix(in srgb, var(--lightgray) 28%, var(--light));
+    background: rgba(127, 127, 127, 0.08);
   }
 
   .stat-value {
-    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
     font-weight: 700;
     line-height: 1.15;
     color: var(--dark);
@@ -45,8 +44,7 @@
 }
 
 @media (max-width: 800px) {
-  .mesocosm-stats .stat-card {
-    flex: 1 1 calc(50% - 0.75rem);
-    min-width: calc(50% - 0.75rem);
+  .mesocosm-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
